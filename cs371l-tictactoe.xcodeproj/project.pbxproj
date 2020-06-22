@@ -14,6 +14,10 @@
 		81CC1CF724A0678100524D35 /* cs371l_tictactoe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81CC1CF524A0678100524D35 /* cs371l_tictactoe.xcdatamodeld */; };
 		81CC1CF924A0678200524D35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81CC1CF824A0678200524D35 /* Assets.xcassets */; };
 		81CC1CFC24A0678200524D35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81CC1CFA24A0678200524D35 /* LaunchScreen.storyboard */; };
+		FC59572124A06F87009EA08D /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59572024A06F87009EA08D /* GameVC.swift */; };
+		FC59572324A06FCE009EA08D /* InviteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59572224A06FCE009EA08D /* InviteVC.swift */; };
+		FC59572524A06FF9009EA08D /* MatchHistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59572424A06FF9009EA08D /* MatchHistVC.swift */; };
+		FC98E1D724A0707900083232 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC98E1D624A0707900083232 /* SettingsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		81CC1CF824A0678200524D35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		81CC1CFB24A0678200524D35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		81CC1CFD24A0678200524D35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC59572024A06F87009EA08D /* GameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
+		FC59572224A06FCE009EA08D /* InviteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteVC.swift; sourceTree = "<group>"; };
+		FC59572424A06FF9009EA08D /* MatchHistVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHistVC.swift; sourceTree = "<group>"; };
+		FC98E1D624A0707900083232 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +70,10 @@
 				81CC1CEE24A0678100524D35 /* SceneDelegate.swift */,
 				81CC1CF024A0678100524D35 /* ViewController.swift */,
 				81CC1CF224A0678100524D35 /* Main.storyboard */,
+				FC59572024A06F87009EA08D /* GameVC.swift */,
+				FC98E1D624A0707900083232 /* SettingsVC.swift */,
+				FC59572224A06FCE009EA08D /* InviteVC.swift */,
+				FC59572424A06FF9009EA08D /* MatchHistVC.swift */,
 				81CC1CF824A0678200524D35 /* Assets.xcassets */,
 				81CC1CFA24A0678200524D35 /* LaunchScreen.storyboard */,
 				81CC1CFD24A0678200524D35 /* Info.plist */,
@@ -144,6 +156,10 @@
 				81CC1CF124A0678100524D35 /* ViewController.swift in Sources */,
 				81CC1CF724A0678100524D35 /* cs371l_tictactoe.xcdatamodeld in Sources */,
 				81CC1CED24A0678100524D35 /* AppDelegate.swift in Sources */,
+				FC59572324A06FCE009EA08D /* InviteVC.swift in Sources */,
+				FC59572524A06FF9009EA08D /* MatchHistVC.swift in Sources */,
+				FC98E1D724A0707900083232 /* SettingsVC.swift in Sources */,
+				FC59572124A06F87009EA08D /* GameVC.swift in Sources */,
 				81CC1CEF24A0678100524D35 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

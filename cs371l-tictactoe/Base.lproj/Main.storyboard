@@ -14,6 +14,40 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dkf-yf-sm8" userLabel="Play Button">
+                                <rect key="frame" x="176" y="433" width="63" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Play Solo"/>
+                                <connections>
+                                    <segue destination="Tmv-RG-5TE" kind="show" id="3hj-5J-GhB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qsd-f1-0Sk" userLabel="Invite Button">
+                                <rect key="frame" x="145" y="471" width="125" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Invite/Join Friends"/>
+                                <connections>
+                                    <segue destination="47e-cO-nQg" kind="show" id="U9Y-6j-3jt"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mc3-82-qhB" userLabel="History Button">
+                                <rect key="frame" x="159" y="509" width="96" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Match History"/>
+                                <connections>
+                                    <segue destination="b38-AV-ZiS" kind="show" id="aP7-w6-gw9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TcR-LN-as7">
+                                <rect key="frame" x="179" y="547" width="57" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Settings"/>
+                                <connections>
+                                    <segue destination="fnI-k6-bkZ" kind="show" id="1Z7-Ff-QQL"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -22,6 +56,70 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="116.51785714285714"/>
+        </scene>
+        <!--GameVC-->
+        <scene sceneID="jhA-dk-mR3">
+            <objects>
+                <viewController id="Tmv-RG-5TE" customClass="GameVC" customModule="cs371l_tictactoe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yuO-UY-n5r">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="UxZ-aT-Lj9"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="YmV-me-Qht"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i2w-1u-Zbh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1838" y="117"/>
+        </scene>
+        <!--Match HistVC-->
+        <scene sceneID="fuC-d3-gQQ">
+            <objects>
+                <viewController id="b38-AV-ZiS" customClass="MatchHistVC" customModule="cs371l_tictactoe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JG5-5C-fLG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="YG6-xH-YEA"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="w3L-xK-TLf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F6B-pa-31V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1838" y="802"/>
+        </scene>
+        <!--SettingsVC-->
+        <scene sceneID="c11-px-7iU">
+            <objects>
+                <viewController id="fnI-k6-bkZ" customClass="SettingsVC" customModule="cs371l_tictactoe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DkN-v3-sWQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="OfU-N0-r9d"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="xrc-I4-os9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tA0-8x-prr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2587" y="802"/>
+        </scene>
+        <!--InviteVC-->
+        <scene sceneID="DQt-ga-fC9">
+            <objects>
+                <viewController id="47e-cO-nQg" customClass="InviteVC" customModule="cs371l_tictactoe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FYl-dR-ugX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="9N4-Td-MdV"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Zg1-XT-YkM"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bxx-ET-g92" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2587" y="117"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jCs-4W-mnh">
