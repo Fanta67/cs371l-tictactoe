@@ -1,6 +1,8 @@
 //
 //  PostGameVC.swift
 //  cs371l-tictactoe
+//  EID: bv5433, dk9362
+//  Course: CS371L
 //
 //  Created by Dylan Kan on 6/22/20.
 //  Copyright © 2020 billyvo. All rights reserved.
