@@ -16,8 +16,11 @@
 		81CC1CF924A0678200524D35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81CC1CF824A0678200524D35 /* Assets.xcassets */; };
 		81CC1CFC24A0678200524D35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81CC1CFA24A0678200524D35 /* LaunchScreen.storyboard */; };
 		C87D75CC769E857A2AE71459 /* Pods_cs371l_tictactoe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82DFEDF786412B86661F52DA /* Pods_cs371l_tictactoe.framework */; };
+<<<<<<< HEAD
+=======
+		FC53543524ADFB550058A7DE /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC53543424ADFB550058A7DE /* MatchCell.swift */; };
+>>>>>>> fe2d67179666ffaaf696547a33559a6b38744d84
 		FC59572124A06F87009EA08D /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59572024A06F87009EA08D /* GameVC.swift */; };
-		FC59572324A06FCE009EA08D /* InviteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59572224A06FCE009EA08D /* InviteVC.swift */; };
 		FC59572524A06FF9009EA08D /* MatchHistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59572424A06FF9009EA08D /* MatchHistVC.swift */; };
 		FC98E1D724A0707900083232 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC98E1D624A0707900083232 /* SettingsVC.swift */; };
 		FC98E1D924A0734A00083232 /* PostGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC98E1D824A0734900083232 /* PostGameVC.swift */; };
@@ -37,8 +40,11 @@
 		82DFEDF786412B86661F52DA /* Pods_cs371l_tictactoe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cs371l_tictactoe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3FFBD9E14DC9920018988F8 /* Pods-cs371l-tictactoe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cs371l-tictactoe.release.xcconfig"; path = "Target Support Files/Pods-cs371l-tictactoe/Pods-cs371l-tictactoe.release.xcconfig"; sourceTree = "<group>"; };
 		D877F5DE157635EEED4F6388 /* Pods-cs371l-tictactoe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cs371l-tictactoe.debug.xcconfig"; path = "Target Support Files/Pods-cs371l-tictactoe/Pods-cs371l-tictactoe.debug.xcconfig"; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
+		FC53543424ADFB550058A7DE /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
+>>>>>>> fe2d67179666ffaaf696547a33559a6b38744d84
 		FC59572024A06F87009EA08D /* GameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
-		FC59572224A06FCE009EA08D /* InviteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteVC.swift; sourceTree = "<group>"; };
 		FC59572424A06FF9009EA08D /* MatchHistVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHistVC.swift; sourceTree = "<group>"; };
 		FC98E1D624A0707900083232 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		FC98E1D824A0734900083232 /* PostGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGameVC.swift; sourceTree = "<group>"; };
@@ -72,10 +78,10 @@
 				81CC1CEE24A0678100524D35 /* SceneDelegate.swift */,
 				81CC1CF024A0678100524D35 /* ViewController.swift */,
 				81CC1CF224A0678100524D35 /* Main.storyboard */,
+				FC53543424ADFB550058A7DE /* MatchCell.swift */,
 				FC98E1D824A0734900083232 /* PostGameVC.swift */,
 				FC59572024A06F87009EA08D /* GameVC.swift */,
 				FC98E1D624A0707900083232 /* SettingsVC.swift */,
-				FC59572224A06FCE009EA08D /* InviteVC.swift */,
 				FC59572424A06FF9009EA08D /* MatchHistVC.swift */,
 				81CC1CF824A0678200524D35 /* Assets.xcassets */,
 				81CC1CFA24A0678200524D35 /* LaunchScreen.storyboard */,
@@ -224,7 +230,7 @@
 				81CC1CF724A0678100524D35 /* cs371l_tictactoe.xcdatamodeld in Sources */,
 				81CC1CED24A0678100524D35 /* AppDelegate.swift in Sources */,
 				FC98E1D924A0734A00083232 /* PostGameVC.swift in Sources */,
-				FC59572324A06FCE009EA08D /* InviteVC.swift in Sources */,
+				FC53543524ADFB550058A7DE /* MatchCell.swift in Sources */,
 				FC59572524A06FF9009EA08D /* MatchHistVC.swift in Sources */,
 				FC98E1D724A0707900083232 /* SettingsVC.swift in Sources */,
 				FC59572124A06F87009EA08D /* GameVC.swift in Sources */,

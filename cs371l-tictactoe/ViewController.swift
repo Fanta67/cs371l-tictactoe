@@ -11,23 +11,65 @@ import UIKit
 import CoreData
 
 //store darkMode and soundOn
-public var settings:[NSObject] = []
+public var settings:[NSManagedObject] = []
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+              return
+        }
+        
+        //fetch settings from core data
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "DarkMode")
+        let fetchRequest2 = NSFetchRequest<NSManagedObject>(entityName: "Sound")
+        
+        do {
+            let darkMode = try managedContext.fetch(fetchRequest)
+            let soundOn = try managedContext.fetch(fetchRequest2)
+            if darkMode.count > 0 {
+                try settings.append(managedContext.fetch(fetchRequest)[0])
+            }
+            if soundOn.count > 0 {
+                try settings.append(managedContext.fetch(fetchRequest2)[0])
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+            abort()
+        }
+        
+//        DeleteAllData()
+        //first time opening app and nothing in core data
         if (settings.count == 0) {
             saveDefaults()
         }
     }
 
+//    //clear out settings in core data on load for easier testing
+//    func DeleteAllData(){
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        let managedContext = appDelegate.persistentContainer.viewContext
+//        let DelAllReqVar = NSBatchDeleteRequest(fetchRequest: NSFetchRequest<NSFetchRequestResult>(entityName: "DarkMode"))
+//        let DelAllReqVar2 = NSBatchDeleteRequest(fetchRequest: NSFetchRequest<NSFetchRequestResult>(entityName: "Sound"))
+//        do {
+//            try managedContext.execute(DelAllReqVar)
+//            try managedContext.execute(DelAllReqVar2)
+//        }
+//        catch {
+//            print(error)
+//        }
+//    }
+
     override func viewWillAppear(_ animated: Bool) {
         if(settings[0].value(forKeyPath: "isOn") as! Bool) {
             overrideUserInterfaceStyle = .dark
+            self.navigationController?.navigationBar.barTintColor = .black
         } else {
             overrideUserInterfaceStyle = .light
+            self.navigationController?.navigationBar.barTintColor = .white
         }
     }
     

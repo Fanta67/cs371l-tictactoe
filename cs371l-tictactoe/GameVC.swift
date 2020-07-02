@@ -11,6 +11,10 @@
 import UIKit
 import Firebase
 import Foundation
+<<<<<<< HEAD
+=======
+import CoreData
+>>>>>>> fe2d67179666ffaaf696547a33559a6b38744d84
 
 class GameVC: UIViewController {
     
@@ -31,8 +35,31 @@ class GameVC: UIViewController {
         /*
         if(settings[0].value(forKeyPath: "isOn") as! Bool) {
             overrideUserInterfaceStyle = .dark
+            self.navigationController?.navigationBar.barTintColor = .black
         } else {
             overrideUserInterfaceStyle = .light
+            self.navigationController?.navigationBar.barTintColor = .white
+        }
+    }
+    
+    func save(whoWon: String, gameImage: UIImage) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Match", in: managedContext)!
+        let match = NSManagedObject(entity: entity, insertInto: managedContext)
+        
+        match.setValue(whoWon, forKey: "whoWon")
+        match.setValue(gameImage, forKey: "gameImage")
+    
+        do {
+            try managedContext.save()
+            matchTable.append(match)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+            abort()
         }
          */
     }
