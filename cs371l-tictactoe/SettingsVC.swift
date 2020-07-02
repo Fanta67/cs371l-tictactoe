@@ -57,6 +57,7 @@ class SettingsVC: UIViewController {
 
         do {
             try managedContext.save()
+            print("saved to core data")
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
             abort()
