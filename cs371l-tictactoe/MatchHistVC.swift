@@ -27,8 +27,10 @@ class MatchHistVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         super.viewWillAppear(animated)
         if(settings[0].value(forKeyPath: "isOn") as! Bool) {
             overrideUserInterfaceStyle = .dark
+            self.navigationController?.navigationBar.barTintColor = .black
         } else {
             overrideUserInterfaceStyle = .light
+            self.navigationController?.navigationBar.barTintColor = .white
         }
     
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {

@@ -22,8 +22,10 @@ class GameVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         if(settings[0].value(forKeyPath: "isOn") as! Bool) {
             overrideUserInterfaceStyle = .dark
+            self.navigationController?.navigationBar.barTintColor = .black
         } else {
             overrideUserInterfaceStyle = .light
+            self.navigationController?.navigationBar.barTintColor = .white
         }
     }
     
