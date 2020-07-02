@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import CoreData
 
 class GameVC: UIViewController {
 
@@ -23,6 +24,27 @@ class GameVC: UIViewController {
             overrideUserInterfaceStyle = .dark
         } else {
             overrideUserInterfaceStyle = .light
+        }
+    }
+    
+    func save(whoWon: String, gameImage: UIImage) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Match", in: managedContext)!
+        let match = NSManagedObject(entity: entity, insertInto: managedContext)
+        
+        match.setValue(whoWon, forKey: "whoWon")
+        match.setValue(gameImage, forKey: "gameImage")
+    
+        do {
+            try managedContext.save()
+            matchTable.append(match)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+            abort()
         }
     }
 

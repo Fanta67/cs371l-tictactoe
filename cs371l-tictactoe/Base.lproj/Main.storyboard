@@ -15,22 +15,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dkf-yf-sm8" userLabel="Play Button">
-                                <rect key="frame" x="176" y="433" width="63" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Play Solo"/>
-                                <connections>
-                                    <segue destination="Tmv-RG-5TE" kind="show" id="3hj-5J-GhB"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qsd-f1-0Sk" userLabel="Invite Button">
-                                <rect key="frame" x="145" y="471" width="125" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Invite/Join Friends"/>
-                                <connections>
-                                    <segue destination="47e-cO-nQg" kind="show" id="U9Y-6j-3jt"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mc3-82-qhB" userLabel="History Button">
                                 <rect key="frame" x="159" y="509" width="96" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -51,6 +35,14 @@
                                 <rect key="frame" x="70" y="129" width="275" height="275"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dkf-yf-sm8" userLabel="Play Button">
+                                <rect key="frame" x="176" y="471" width="63" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Play Solo"/>
+                                <connections>
+                                    <segue destination="Tmv-RG-5TE" kind="show" identifier="PlaySegue" id="3hj-5J-GhB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -72,6 +64,9 @@
                         <viewLayoutGuide key="safeArea" id="UxZ-aT-Lj9"/>
                     </view>
                     <navigationItem key="navigationItem" id="YmV-me-Qht"/>
+                    <connections>
+                        <segue destination="gBM-8J-zgJ" kind="show" identifier="PostgameSegue" id="Ac9-V1-mmZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i2w-1u-Zbh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -180,22 +175,6 @@
             </objects>
             <point key="canvasLocation" x="2587" y="802"/>
         </scene>
-        <!--InviteVC-->
-        <scene sceneID="DQt-ga-fC9">
-            <objects>
-                <viewController id="47e-cO-nQg" customClass="InviteVC" customModule="cs371l_tictactoe" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="FYl-dR-ugX">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="9N4-Td-MdV"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Zg1-XT-YkM"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bxx-ET-g92" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2587" y="117"/>
-        </scene>
         <!--Post GameVC-->
         <scene sceneID="ohi-iP-f7s">
             <objects>
@@ -206,10 +185,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="jA4-Ny-Hra"/>
                     </view>
+                    <navigationItem key="navigationItem" id="YPz-lP-HD7"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6y3-Wn-un7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1042" y="802"/>
+            <point key="canvasLocation" x="2587" y="117"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jCs-4W-mnh">
