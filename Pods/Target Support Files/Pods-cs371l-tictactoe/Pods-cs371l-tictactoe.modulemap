@@ -1,6 +1,0 @@
-framework module Pods_cs371l_tictactoe {
-  umbrella header "Pods-cs371l-tictactoe-umbrella.h"
-
-  export *
-  module * { export * }
-}
