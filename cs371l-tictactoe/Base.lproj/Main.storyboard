@@ -15,22 +15,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mc3-82-qhB" userLabel="History Button">
-                                <rect key="frame" x="159" y="509" width="96" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Match History"/>
-                                <connections>
-                                    <segue destination="b38-AV-ZiS" kind="show" id="aP7-w6-gw9"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TcR-LN-as7">
-                                <rect key="frame" x="179" y="547" width="57" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Settings"/>
-                                <connections>
-                                    <segue destination="fnI-k6-bkZ" kind="show" id="1Z7-Ff-QQL"/>
-                                </connections>
-                            </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="title_cross" translatesAutoresizingMaskIntoConstraints="NO" id="8Ej-ag-vap">
                                 <rect key="frame" x="70" y="129" width="275" height="275"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -41,6 +25,30 @@
                                 <state key="normal" title="Play Solo"/>
                                 <connections>
                                     <segue destination="Tmv-RG-5TE" kind="show" identifier="PlaySegue" id="3hj-5J-GhB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VJ6-qW-jqZ">
+                                <rect key="frame" x="172" y="509" width="70" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Invite/Join"/>
+                                <connections>
+                                    <segue destination="jND-vz-5Ln" kind="show" id="M5i-4q-g7z"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mc3-82-qhB" userLabel="History Button">
+                                <rect key="frame" x="159" y="547" width="96" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Match History"/>
+                                <connections>
+                                    <segue destination="b38-AV-ZiS" kind="show" id="aP7-w6-gw9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TcR-LN-as7">
+                                <rect key="frame" x="179" y="585" width="57" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Settings"/>
+                                <connections>
+                                    <segue destination="fnI-k6-bkZ" kind="show" id="1Z7-Ff-QQL"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -320,11 +328,12 @@
                         <outlet property="inviteLabel" destination="Be5-tE-06S" id="wP3-gB-7Xq"/>
                         <outlet property="inviteTextField" destination="G6J-S4-yrR" id="SGy-qd-WRx"/>
                         <outlet property="statusLabel" destination="TxS-MH-xMf" id="wMq-ma-EqU"/>
+                        <segue destination="Tmv-RG-5TE" kind="show" identifier="InviteToGameSegue" id="Fzq-RR-B4E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RN1-G9-2Er" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2586.9565217391305" y="116.51785714285714"/>
+            <point key="canvasLocation" x="3359" y="117"/>
         </scene>
     </scenes>
     <resources>
@@ -332,4 +341,7 @@
         <image name="title_cross" width="1200" height="1200"/>
         <image name="x" width="188" height="188"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Fzq-RR-B4E"/>
+    </inferredMetricsTieBreakers>
 </document>

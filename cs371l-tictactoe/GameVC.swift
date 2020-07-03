@@ -20,8 +20,6 @@ class GameVC: UIViewController {
     var inviteCode: String = ""
     var playerID: String = ""
     var gameRef: DatabaseReference = Database.database().reference()
-
-    @IBOutlet weak var blButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +73,7 @@ class GameVC: UIViewController {
         
     func disallowTurn() {
         // make board unclickable
-        blButton.isEnabled = false
+        //blButton.isEnabled = false
     }
 }
 
