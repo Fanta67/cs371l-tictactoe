@@ -31,6 +31,7 @@ class GameVC: UIViewController {
     
     var inviteCode: String = ""
     var playerID: String = ""
+    // A reference to the current game.
     var gameRef: DatabaseReference = Database.database().reference()
     
     override func viewDidLoad() {
@@ -111,10 +112,57 @@ class GameVC: UIViewController {
             //check if game has been won
             break
         }
+//        var image: UIImage = self.view.boardScreenshot()
+//        button?.setBackgroundImage(image, for: .normal)
     }
     
     func gameFinished() {
+        gameRef.child("playerTurn").removeAllObservers()
+        gameRef.child("board").removeAllObservers()
         performSegue(withIdentifier: "PostgameSegue", sender: nil)
+    }
+    
+    /// Attaches observers to database's current board and playerTurn. Observers execute code specified
+    /// by the with: parameter every time data being observed is changed.
+    func attachObserversToBoard() {
+        
+        // Attaching board observer.
+        gameRef.child("board").observe(DataEventType.value, with: { (snapshot) in
+            // Casts snapshot as an array
+            guard let boardAsArray = snapshot.value as? NSMutableArray else {
+                print("CASTING BOARD AS ARRAY ERROR")
+                return
+            }
+            for i in 0 ..< 9 {
+                //if boardAsArray[i] == 1 ; button[i].setAsX
+                //else if == 2; button[i].setAsCircle
+            }
+            //self.gameRef.updateChildValues(boardDict)
+        })
+        
+        // Attaching playerTurn observer. It automatically disables/enables turn
+        // based on if playerID matches playerTurn.
+        gameRef.child("playerTurn").observe(DataEventType.value, with: { (snapshot) in
+            let playerTurn = (snapshot.value as? Int)!
+            if self.playerID == "player\(playerTurn)Name" {
+                self.allowTurn()
+            } else {
+                self.disallowTurn()
+            }
+        })
+    }
+        
+}
+
+extension UIView {
+    
+    /// Takes a screenshot of the tictactoe board and returns it as a UIImage.
+    // TODO: currently not sized correctly!
+    func boardScreenshot() -> UIImage {
+    return UIGraphicsImageRenderer(size: bounds.size).image { _ in
+        let rectangle = CGRect(x: 20, y: 184, width: 130*3, height: 130*3)
+        drawHierarchy(in: rectangle, afterScreenUpdates: true)
+        }
     }
     
 }

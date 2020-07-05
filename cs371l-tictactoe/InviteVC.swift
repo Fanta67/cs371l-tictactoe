@@ -24,7 +24,7 @@ class InviteVC: UIViewController {
     @IBOutlet weak var inviteLabel: UILabel!
     @IBAction func onGenerateButtonPressed(_ sender: Any) {
         //inviteCode = randomString(length: 5)
-        inviteCode = "test1"
+        inviteCode = "game0"
         /*
         let single = ref.child("games").observeSingleEvent(of: .value, with: { (snapshot) in
             while snapshot.hasChild(self.inviteCode) {
@@ -36,38 +36,51 @@ class InviteVC: UIViewController {
         // Invite Code is valid, set up game.
         inviteLabel.text = inviteCode
         let gameRef = ref.child("games/\(inviteCode)")
-        gameRef.child("player1").setValue("playa1")//Auth.auth().currentUser().uid
-        playerID = "playa1"
+        gameRef.child("player1").setValue("player1Name")
+        playerID = "player1Name"
         gameRef.child("playerTurn").setValue(Int.random(in: 1 ... 2))
         
-        /*let refHandle = gameRef.observe(DataEventType.value, with: { (snapshot) in
-            let postDict = snapshot.value as? [String : AnyObject] ?? [:]
-            print(postDict)
-        })
- */
+        // Set up board.
+        let boardArray = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        let boardDict = ["board" : boardArray]
+        gameRef.updateChildValues(boardDict)
         
         performSegue(withIdentifier: "InviteToGameSegue", sender: nil)
-        //gameRef.removeAllObservers()
-        
     }
     
     @IBAction func onJoinGameButtonPressed(_ sender: Any) {
         inviteCode = inviteTextField.text!
-        // Read database for valid game.
+        if inviteCode.isEmpty {
+            self.statusLabel.text = "Invalid invite code - please enter a code"
+            return
+        }
+        
+        // Check for invalid characters that won't work with Firebase database.
+        let characterSet = CharacterSet(charactersIn: ".#$[]")
+        if inviteCode.rangeOfCharacter(from: characterSet) != nil {
+            self.statusLabel.text = "Invalid invite code - contains invalid character(s)"
+            return
+        }
+        
+        // Read and check database for valid game.
         ref.child("games").observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.hasChild(self.inviteCode) {
-                ref.child("games/\(self.inviteCode)/player2").setValue("playa2")//Auth.auth().currentUser().uid
-                self.playerID = "playa2"
-                self.performSegue(withIdentifier: "InviteToGameSegue", sender: nil)
+                if !snapshot.hasChild("\(self.inviteCode)/player2") {
+                    ref.child("games/\(self.inviteCode)/player2").setValue("player2Name")
+                    self.playerID = "player2Name"
+                    self.performSegue(withIdentifier: "InviteToGameSegue", sender: nil)
+                } else {
+                    self.statusLabel.text = "Invalid invite code - two players already in game"
+                }
             } else {
-                self.statusLabel.text = "Invalid invite code entered"
+                self.statusLabel.text = "Invalid invite code - game does not exist"
             }
         })
     }
     
     
     
-    /// Generates a random alphanumeric String. A length of 5 produces a 1 in a million chances.
+    /// Generates a random alphanumeric String. A length of 5 produces 1 in a million chances.
     ///
     /// - Parameters:
     ///   - length: The amount of characters in the randomized String.
