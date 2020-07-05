@@ -22,6 +22,23 @@ class InviteVC: UIViewController {
     
     @IBOutlet weak var inviteTextField: UITextField!
     @IBOutlet weak var inviteLabel: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if(settings[0].value(forKeyPath: "isOn") as! Bool) {
+            overrideUserInterfaceStyle = .dark
+            self.navigationController?.navigationBar.barTintColor = .black
+        } else {
+            overrideUserInterfaceStyle = .light
+            self.navigationController?.navigationBar.barTintColor = .white
+        }
+    }
+    
     @IBAction func onGenerateButtonPressed(_ sender: Any) {
         //inviteCode = randomString(length: 5)
         inviteCode = "game0"
@@ -78,8 +95,6 @@ class InviteVC: UIViewController {
         })
     }
     
-    
-    
     /// Generates a random alphanumeric String. A length of 5 produces 1 in a million chances.
     ///
     /// - Parameters:
@@ -89,26 +104,11 @@ class InviteVC: UIViewController {
         return String((0..<length).map{ _ in letters.randomElement()! })
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-    
-    /*
-    override func viewWillAppear(_ animated: Bool) {
-        if(settings[0].value(forKeyPath: "isOn") as! Bool) {
-            overrideUserInterfaceStyle = .dark
-        } else {
-            overrideUserInterfaceStyle = .light
-        }
-    }
-    */
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let segueIdentifier = segue.identifier else { return }
         if segueIdentifier == "InviteToGameSegue" {
             (segue.destination as! GameVC).inviteCode = inviteCode
+            (segue.destination as! GameVC).playerID = self.playerID
         }
     }
     

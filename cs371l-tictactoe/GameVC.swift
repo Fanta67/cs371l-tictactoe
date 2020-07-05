@@ -27,8 +27,6 @@ class GameVC: UIViewController {
     @IBOutlet weak var turnLabel: UILabel!
     let winningCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
     
-    let queue = DispatchQueue(label: "q1", qos: .userInitiated)
-    
     var inviteCode: String = ""
     var playerID: String = ""
     // A reference to the current game.
@@ -49,6 +47,7 @@ class GameVC: UIViewController {
         }
     }
     
+    //save match to core data
     func save(whoWon: String, gameImage: UIImage) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -107,11 +106,37 @@ class GameVC: UIViewController {
     
     @IBAction func buttonPressed(_ sender: Any) {
         let button = sender as? UIButton
+        var whichIdx = -1
+        switch button {
+        case button1:
+            whichIdx = 0
+        case button2:
+            whichIdx = 1
+        case button3:
+            whichIdx = 2
+        case button4:
+            whichIdx = 3
+        case button5:
+            whichIdx = 4
+        case button6:
+            whichIdx = 5
+        case button7:
+            whichIdx = 6
+        case button8:
+            whichIdx = 7
+        case button9:
+            whichIdx = 8
+        default:
+            print("This shouldn't happen")
+            abort()
+        }
+        print("\(whichIdx)")
         button?.setImage(UIImage(named: "o.png"), for: .normal)
         for combination in winningCombinations {
             //check if game has been won
             break
         }
+        
 //        var image: UIImage = self.view.boardScreenshot()
 //        button?.setBackgroundImage(image, for: .normal)
     }
