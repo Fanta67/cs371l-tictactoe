@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		810FD09024B2CEC00094E0C7 /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810FD08F24B2CEC00094E0C7 /* GameVC.swift */; };
 		811138C024ADCD3400B71D75 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 811138BF24ADCD3400B71D75 /* GoogleService-Info.plist */; };
 		8168297424AEABD6003E845F /* InviteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8168297324AEABD5003E845F /* InviteVC.swift */; };
 		81CC1CED24A0678100524D35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC1CEC24A0678100524D35 /* AppDelegate.swift */; };
@@ -18,6 +17,7 @@
 		81CC1CF924A0678200524D35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81CC1CF824A0678200524D35 /* Assets.xcassets */; };
 		81CC1CFC24A0678200524D35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81CC1CFA24A0678200524D35 /* LaunchScreen.storyboard */; };
 		C87D75CC769E857A2AE71459 /* Pods_cs371l_tictactoe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82DFEDF786412B86661F52DA /* Pods_cs371l_tictactoe.framework */; };
+		FC225CB624B3262700F4C6CC /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC225CB524B3262700F4C6CC /* GameVC.swift */; };
 		FC53543524ADFB550058A7DE /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC53543424ADFB550058A7DE /* MatchCell.swift */; };
 		FC59572524A06FF9009EA08D /* MatchHistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59572424A06FF9009EA08D /* MatchHistVC.swift */; };
 		FC98E1D724A0707900083232 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC98E1D624A0707900083232 /* SettingsVC.swift */; };
@@ -25,7 +25,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		810FD08F24B2CEC00094E0C7 /* GameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameVC.swift; path = "/Users/billyvo/Desktop/cs371l-tictactoe/cs371l-tictactoe/GameVC.swift"; sourceTree = "<absolute>"; };
 		811138BF24ADCD3400B71D75 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8168297024AEA668003E845F /* cs371l-tictactoe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "cs371l-tictactoe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8168297324AEABD5003E845F /* InviteVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteVC.swift; sourceTree = "<group>"; };
@@ -40,6 +39,7 @@
 		82DFEDF786412B86661F52DA /* Pods_cs371l_tictactoe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cs371l_tictactoe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3FFBD9E14DC9920018988F8 /* Pods-cs371l-tictactoe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cs371l-tictactoe.release.xcconfig"; path = "Target Support Files/Pods-cs371l-tictactoe/Pods-cs371l-tictactoe.release.xcconfig"; sourceTree = "<group>"; };
 		D877F5DE157635EEED4F6388 /* Pods-cs371l-tictactoe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cs371l-tictactoe.debug.xcconfig"; path = "Target Support Files/Pods-cs371l-tictactoe/Pods-cs371l-tictactoe.debug.xcconfig"; sourceTree = "<group>"; };
+		FC225CB524B3262700F4C6CC /* GameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
 		FC53543424ADFB550058A7DE /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
 		FC59572424A06FF9009EA08D /* MatchHistVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHistVC.swift; sourceTree = "<group>"; };
 		FC98E1D624A0707900083232 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
@@ -76,7 +76,7 @@
 				81CC1CF024A0678100524D35 /* ViewController.swift */,
 				81CC1CF224A0678100524D35 /* Main.storyboard */,
 				8168297324AEABD5003E845F /* InviteVC.swift */,
-				810FD08F24B2CEC00094E0C7 /* GameVC.swift */,
+				FC225CB524B3262700F4C6CC /* GameVC.swift */,
 				FC53543424ADFB550058A7DE /* MatchCell.swift */,
 				FC98E1D824A0734900083232 /* PostGameVC.swift */,
 				FC98E1D624A0707900083232 /* SettingsVC.swift */,
@@ -223,6 +223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC225CB624B3262700F4C6CC /* GameVC.swift in Sources */,
 				81CC1CF124A0678100524D35 /* ViewController.swift in Sources */,
 				81CC1CF724A0678100524D35 /* cs371l_tictactoe.xcdatamodeld in Sources */,
 				81CC1CED24A0678100524D35 /* AppDelegate.swift in Sources */,
@@ -231,7 +232,6 @@
 				FC53543524ADFB550058A7DE /* MatchCell.swift in Sources */,
 				FC59572524A06FF9009EA08D /* MatchHistVC.swift in Sources */,
 				FC98E1D724A0707900083232 /* SettingsVC.swift in Sources */,
-				810FD09024B2CEC00094E0C7 /* GameVC.swift in Sources */,
 				81CC1CEF24A0678100524D35 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
