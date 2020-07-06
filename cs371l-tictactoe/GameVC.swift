@@ -25,6 +25,8 @@ class GameVC: UIViewController {
     @IBOutlet weak var button8: UIButton!
     @IBOutlet weak var button9: UIButton!
     @IBOutlet weak var turnLabel: UILabel!
+    @IBOutlet weak var boardImageView: UIImageView!
+    @IBOutlet weak var boardView: UIView!
     let winningCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
     
     var inviteCode: String = ""
@@ -41,9 +43,11 @@ class GameVC: UIViewController {
         if(settings[0].value(forKeyPath: "isOn") as! Bool) {
             overrideUserInterfaceStyle = .dark
             self.navigationController?.navigationBar.barTintColor = .black
+            boardImageView.image = UIImage(named: "board-10pix-white-transparent")
         } else {
             overrideUserInterfaceStyle = .light
             self.navigationController?.navigationBar.barTintColor = .white
+            boardImageView.image = UIImage(named: "board-10pix-black-transparent")
         }
     }
     
@@ -136,14 +140,20 @@ class GameVC: UIViewController {
             //check if game has been won
             break
         }
-        
-//        var image: UIImage = self.view.boardScreenshot()
-//        button?.setBackgroundImage(image, for: .normal)
     }
     
     func gameFinished() {
+        
+        // Removing observers to prevent database changes from invoking function calls.
         gameRef.child("playerTurn").removeAllObservers()
         gameRef.child("board").removeAllObservers()
+        
+        // Taking screenshot
+        // TODO: save screenshot to CoreData
+        let absoluteBounds = boardImageView.convert(boardImageView.bounds, to: self.view)
+        let image: UIImage = screenshotOfArea(view: self.view, bounds: absoluteBounds)
+        
+        
         performSegue(withIdentifier: "PostgameSegue", sender: nil)
     }
     
@@ -176,18 +186,30 @@ class GameVC: UIViewController {
             }
         })
     }
-        
+    
+    /// Takes a screenshot of specified area and returns it as a UIImage.
+    ///
+    /// - Parameters:
+    ///   - view: The UIView to take a screenshot of, must have graphical elements in it's hierarchy.
+    ///   - bounds: The CGRect to denote the framing of the screenshot.
+    func screenshotOfArea(view: UIView, bounds: CGRect? = nil) -> UIImage {
+        let screenshotRect = CGRect(x: 20, y: 200, width: 374, height: 374)
+        return UIGraphicsImageRenderer(bounds: bounds ?? screenshotRect).image { _ in
+            view.drawHierarchy(in: view.bounds, afterScreenUpdates: false)
+        }
+    }
 }
 
+/*
+/// Extension allows a screenshot to be taken of a UIView.
 extension UIView {
     
-    /// Takes a screenshot of the tictactoe board and returns it as a UIImage.
-    // TODO: currently not sized correctly!
-    func boardScreenshot() -> UIImage {
-    return UIGraphicsImageRenderer(size: bounds.size).image { _ in
-        let rectangle = CGRect(x: 20, y: 184, width: 130*3, height: 130*3)
-        drawHierarchy(in: rectangle, afterScreenUpdates: true)
+    /// Take a screenshot of the UIView using its bounds.
+    func screenshot() -> UIImage {
+        return UIGraphicsImageRenderer(bounds: self.bounds).image { _ in
+            drawHierarchy(in: self.bounds, afterScreenUpdates: false)
         }
     }
     
 }
+*/

@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/billyvo/Desktop/cs371l-tictactoe/cs371l-tictactoe/GameVC.swift">
+   </FileRef>
+   <FileRef
       location = "group:cs371l-tictactoe.xcodeproj">
    </FileRef>
    <FileRef

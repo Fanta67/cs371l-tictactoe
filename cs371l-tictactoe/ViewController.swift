@@ -15,6 +15,7 @@ public var settings:[NSManagedObject] = []
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var titleImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,9 +68,11 @@ class ViewController: UIViewController {
         if(settings[0].value(forKeyPath: "isOn") as! Bool) {
             overrideUserInterfaceStyle = .dark
             self.navigationController?.navigationBar.barTintColor = .black
+            titleImageView.image = UIImage(named: "title-board-white-transparent")
         } else {
             overrideUserInterfaceStyle = .light
             self.navigationController?.navigationBar.barTintColor = .white
+            titleImageView.image = UIImage(named: "title-board-black-transparent")
         }
     }
     
