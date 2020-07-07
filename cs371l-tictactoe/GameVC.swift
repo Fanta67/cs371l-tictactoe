@@ -27,16 +27,22 @@ class GameVC: UIViewController {
     @IBOutlet weak var turnLabel: UILabel!
     @IBOutlet weak var boardImageView: UIImageView!
     @IBOutlet weak var boardView: UIView!
+    var buttonArray: [UIButton] = []
     let winningCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+    var boardState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     
     var inviteCode: String = ""
     var playerID: String = ""
     // A reference to the current game.
     var gameRef: DatabaseReference = Database.database().reference()
     
+    //find current game in the database
     override func viewDidLoad() {
         super.viewDidLoad()
-        gameRef = Database.database().reference().child("game/\(inviteCode)")
+        gameRef = Database.database().reference().child("games/\(inviteCode)")
+        buttonArray = [button1, button2, button3, button4, button5, button6, button7, button8, button9]
+        print("player id is \(playerID)")
+        attachObserversToBoard()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,6 +116,7 @@ class GameVC: UIViewController {
     
     @IBAction func buttonPressed(_ sender: Any) {
         let button = sender as? UIButton
+        //figure out which button was rpessed
         var whichIdx = -1
         switch button {
         case button1:
@@ -134,11 +141,12 @@ class GameVC: UIViewController {
             print("This shouldn't happen")
             abort()
         }
-        print("\(whichIdx)")
-        button?.setImage(UIImage(named: "o.png"), for: .normal)
-        for combination in winningCombinations {
-            //check if game has been won
-            break
+        if (playerID == "player1Name") {
+            gameRef.child("board/\(whichIdx)").setValue(1)
+            gameRef.child("playerTurn").setValue(2)
+        } else {
+            gameRef.child("board/\(whichIdx)").setValue(2)
+            gameRef.child("playerTurn").setValue(1)
         }
     }
     
@@ -164,15 +172,28 @@ class GameVC: UIViewController {
         // Attaching board observer.
         gameRef.child("board").observe(DataEventType.value, with: { (snapshot) in
             // Casts snapshot as an array
-            guard let boardAsArray = snapshot.value as? NSMutableArray else {
+            guard let board = snapshot.value as? NSMutableArray else {
                 print("CASTING BOARD AS ARRAY ERROR")
                 return
             }
-            for i in 0 ..< 9 {
-                //if boardAsArray[i] == 1 ; button[i].setAsX
-                //else if == 2; button[i].setAsCircle
+            let boardAsArray = board as! [Int]
+            for i in 0..<boardAsArray.count {
+                if (boardAsArray[i] == 1) {
+                    self.buttonArray[i].setImage(UIImage(named: "x.png"), for: .normal)
+                } else if (boardAsArray[i] == 2) {
+                    self.buttonArray[i].setImage(UIImage(named: "o.png"), for: .normal)
+                } else {
+                    self.buttonArray[i].setImage(nil, for: .normal)
+                }
             }
-            //self.gameRef.updateChildValues(boardDict)
+            
+            //check for win
+            for combination in self.winningCombinations {
+                //if we find 3 of the same symbol in a row
+                if (boardAsArray[combination[0]] != 0 && boardAsArray[combination[0]] == boardAsArray[combination[1]] && boardAsArray[combination[1]] == boardAsArray[combination[2]]) {
+                    print("yeehaw \(combination)")
+                }
+            }
         })
         
         // Attaching playerTurn observer. It automatically disables/enables turn
@@ -185,6 +206,7 @@ class GameVC: UIViewController {
                 self.disallowTurn()
             }
         })
+        
     }
     
     /// Takes a screenshot of specified area and returns it as a UIImage.

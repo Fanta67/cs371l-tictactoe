@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KXF-TW-mFh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KXF-TW-mFh">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -83,7 +83,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D8Z-Ia-4yd">
                                         <rect key="frame" x="0.0" y="0.0" width="118" height="118"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="x"/>
                                         <connections>
                                             <action selector="buttonPressed:" destination="Tmv-RG-5TE" eventType="touchUpInside" id="LuG-gw-ity"/>
                                         </connections>
@@ -91,7 +90,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXR-y4-VzT">
                                         <rect key="frame" x="128" y="0.0" width="118" height="118"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="x"/>
                                         <connections>
                                             <action selector="buttonPressed:" destination="Tmv-RG-5TE" eventType="touchUpInside" id="elu-fl-C5z"/>
                                         </connections>
@@ -99,7 +97,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E6A-rj-KCr">
                                         <rect key="frame" x="256" y="0.0" width="118" height="118"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="x"/>
                                         <connections>
                                             <action selector="buttonPressed:" destination="Tmv-RG-5TE" eventType="touchUpInside" id="hd0-bE-ffk"/>
                                         </connections>
@@ -107,7 +104,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NpU-Qi-cbK">
                                         <rect key="frame" x="0.0" y="128" width="118" height="118"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="x"/>
                                         <connections>
                                             <action selector="buttonPressed:" destination="Tmv-RG-5TE" eventType="touchUpInside" id="9Ul-ah-sdc"/>
                                         </connections>
@@ -115,7 +111,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0p-Xk-Gxf">
                                         <rect key="frame" x="128" y="128" width="118" height="118"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="x"/>
                                         <connections>
                                             <action selector="buttonPressed:" destination="Tmv-RG-5TE" eventType="touchUpInside" id="XBH-K1-A7u"/>
                                         </connections>
@@ -123,7 +118,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9E6-cj-dfk">
                                         <rect key="frame" x="256" y="128" width="118" height="118"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="x"/>
                                         <connections>
                                             <action selector="buttonPressed:" destination="Tmv-RG-5TE" eventType="touchUpInside" id="6es-q9-slU"/>
                                         </connections>
@@ -131,7 +125,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MoT-1K-HGA">
                                         <rect key="frame" x="0.0" y="256" width="118" height="118"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="x"/>
                                         <connections>
                                             <action selector="buttonPressed:" destination="Tmv-RG-5TE" eventType="touchUpInside" id="rx0-Qv-t8i"/>
                                         </connections>
@@ -139,7 +132,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JU5-FF-TwB">
                                         <rect key="frame" x="128" y="256" width="118" height="118"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="x"/>
                                         <connections>
                                             <action selector="buttonPressed:" destination="Tmv-RG-5TE" eventType="touchUpInside" id="L4w-86-PV9"/>
                                         </connections>
@@ -147,7 +139,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BPc-kT-X9X">
                                         <rect key="frame" x="256" y="256" width="118" height="118"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="x"/>
                                         <connections>
                                             <action selector="buttonPressed:" destination="Tmv-RG-5TE" eventType="touchUpInside" id="ul9-2B-Xy0"/>
                                         </connections>
@@ -385,13 +376,12 @@
             <point key="canvasLocation" x="3359" y="117"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="3hj-5J-GhB"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="board-10pix-black-transparent" width="374" height="374"/>
         <image name="title-board-black-transparent" width="374" height="374"/>
         <image name="title_cross" width="1200" height="1200"/>
-        <image name="x" width="188" height="188"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="3hj-5J-GhB"/>
-    </inferredMetricsTieBreakers>
 </document>

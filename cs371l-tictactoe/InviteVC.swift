@@ -55,7 +55,7 @@ class InviteVC: UIViewController {
         let gameRef = ref.child("games/\(inviteCode)")
         gameRef.child("player1").setValue("player1Name")
         playerID = "player1Name"
-        gameRef.child("playerTurn").setValue(Int.random(in: 1 ... 2))
+        gameRef.child("playerTurn").setValue(1)
         
         // Set up board.
         let boardArray = [0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -104,6 +104,7 @@ class InviteVC: UIViewController {
         return String((0..<length).map{ _ in letters.randomElement()! })
     }
     
+    //enter game with player id and invite code to access game
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let segueIdentifier = segue.identifier else { return }
         if segueIdentifier == "InviteToGameSegue" {
