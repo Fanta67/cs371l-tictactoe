@@ -29,9 +29,12 @@ class GameVC: UIViewController {
     @IBOutlet weak var boardImageView: UIImageView!
     @IBOutlet weak var boardView: UIView!
     var buttonArray: [UIButton] = []
+    
     let winningCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
     var boardState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    
     var clickPlayer: AVAudioPlayer!
+    var endgamePlayer: AVAudioPlayer!
     
     var inviteCode: String = ""
     var playerID: String = ""
@@ -45,9 +48,7 @@ class GameVC: UIViewController {
         buttonArray = [button1, button2, button3, button4, button5, button6, button7, button8, button9]
         let sound = NSDataAsset(name: "click")!
         do {
-            if (settings[1].value(forKeyPath: "isOn") as! Bool) {
-                clickPlayer = try AVAudioPlayer(data: sound.data, fileTypeHint: "mp3")
-            }
+            clickPlayer = try AVAudioPlayer(data: sound.data, fileTypeHint: "mp3")
         } catch {
             print("Failed to create AVAudioPlayer")
         }
@@ -63,28 +64,6 @@ class GameVC: UIViewController {
             overrideUserInterfaceStyle = .light
             self.navigationController?.navigationBar.barTintColor = .white
             boardImageView.image = UIImage(named: "board-10pix-black-transparent")
-        }
-    }
-    
-    //save match to core data
-    func save(whoWon: String, gameImage: UIImage) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Match", in: managedContext)!
-        let match = NSManagedObject(entity: entity, insertInto: managedContext)
-        
-        match.setValue(whoWon, forKey: "whoWon")
-        match.setValue(gameImage, forKey: "gameImage")
-    
-        do {
-            try managedContext.save()
-            matchTable.append(match)
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-            abort()
         }
     }
     
@@ -124,10 +103,6 @@ class GameVC: UIViewController {
     }
     
     @IBAction func buttonPressed(_ sender: Any) {
-        if (clickPlayer != nil) {
-            clickPlayer.prepareToPlay()
-            clickPlayer.play()
-        }
         let button = sender as? UIButton
         //figure out which button was rpessed
         var whichIdx = -1
@@ -163,23 +138,64 @@ class GameVC: UIViewController {
         }
     }
     
+    //save match to core data and transition to postgame
     func gameFinished(didWin: Bool) {
         
         // Removing observers to prevent database changes from invoking function calls.
         gameRef.child("playerTurn").removeAllObservers()
         gameRef.child("board").removeAllObservers()
         
-        // Taking screenshot
-        // TODO: save screenshot to CoreData
-        let absoluteBounds = boardImageView.convert(boardImageView.bounds, to: self.view)
-        let image: UIImage = screenshotOfArea(view: self.view, bounds: absoluteBounds)
-        if (didWin) {
-            save(whoWon: "Victory", gameImage: image)
-        } else {
-            save(whoWon: "Defeat", gameImage: image)
+        // Taking screenshot of final board state
+        DispatchQueue.main.async {
+            let absoluteBounds = self.boardImageView.convert(self.boardImageView.bounds, to: self.view)
+            let image: UIImage = self.screenshotOfArea(view: self.view, bounds: absoluteBounds)
+            if (didWin) {
+                //self.save(whoWon: "Victory", gameImage: image)
+                let sound = NSDataAsset(name: "victory")!
+                do {
+                    self.endgamePlayer = try AVAudioPlayer(data: sound.data, fileTypeHint: "mp3")
+                    self.endgamePlayer.prepareToPlay()
+                    self.endgamePlayer.play()
+
+                } catch {
+                    print("Failed to create AVAudioPlayer")
+                }
+            } else {
+                //self.save(whoWon: "Defeat", gameImage: image)
+                let sound = NSDataAsset(name: "defeat")!
+                do {
+                    self.endgamePlayer = try AVAudioPlayer(data: sound.data, fileTypeHint: "mp3")
+                    self.endgamePlayer.prepareToPlay()
+                    self.endgamePlayer.play()
+                } catch {
+                    print("Failed to create AVAudioPlayer")
+                }
+            }
         }
         
         performSegue(withIdentifier: "PostgameSegue", sender: nil)
+    }
+    
+    //save match to core data
+    func save(whoWon: String, gameImage: UIImage) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Match", in: managedContext)!
+        let match = NSManagedObject(entity: entity, insertInto: managedContext)
+        
+        match.setValue(whoWon, forKey: "whoWon")
+        match.setValue(gameImage, forKey: "gameImage")
+    
+        do {
+            try managedContext.save()
+            matchTable.append(match)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+            abort()
+        }
     }
     
     /// Attaches observers to database's current board and playerTurn. Observers execute code specified
@@ -193,25 +209,33 @@ class GameVC: UIViewController {
                 print("CASTING BOARD AS ARRAY ERROR")
                 return
             }
-            let boardAsArray = board as! [Int]
-            for i in 0..<boardAsArray.count {
-                if (boardAsArray[i] == 1) {
-                    self.buttonArray[i].setImage(UIImage(named: "x.png"), for: .normal)
-                } else if (boardAsArray[i] == 2) {
-                    self.buttonArray[i].setImage(UIImage(named: "o.png"), for: .normal)
-                } else {
-                    self.buttonArray[i].setImage(nil, for: .normal)
-                }
+            //play button click whenever board changes
+            if (settings[1].value(forKeyPath: "isOn") as! Bool) {
+                self.clickPlayer.prepareToPlay()
+                self.clickPlayer.play()
             }
-            
-            //check for win
-            for combination in self.winningCombinations {
-                //if we find 3 of the same symbol in a row
-                if (boardAsArray[combination[0]] != 0 && boardAsArray[combination[0]] == boardAsArray[combination[1]] && boardAsArray[combination[1]] == boardAsArray[combination[2]]) {
-                    if (boardAsArray[combination[0]] == 1 && self.playerID == "player1Name") || (boardAsArray[combination[0]] == 2 && self.playerID == "player2Name") {
-                        self.gameFinished(didWin: true)
+            //update board images
+            let boardAsArray = board as! [Int]
+            DispatchQueue.main.async {
+                for i in 0..<boardAsArray.count {
+                    if (boardAsArray[i] == 1) {
+                        self.buttonArray[i].setImage(UIImage(named: "x.png"), for: .normal)
+                    } else if (boardAsArray[i] == 2) {
+                        self.buttonArray[i].setImage(UIImage(named: "o.png"), for: .normal)
                     } else {
-                        self.gameFinished(didWin: false)
+                        self.buttonArray[i].setImage(nil, for: .normal)
+                    }
+                }
+            
+                //check for win
+                for combination in self.winningCombinations {
+                    //if we find 3 of the same symbol in a row
+                    if (boardAsArray[combination[0]] != 0 && boardAsArray[combination[0]] == boardAsArray[combination[1]] && boardAsArray[combination[1]] == boardAsArray[combination[2]]) {
+                        if (boardAsArray[combination[0]] == 1 && self.playerID == "player1Name") || (boardAsArray[combination[0]] == 2 && self.playerID == "player2Name") {
+                            self.gameFinished(didWin: true)
+                        } else {
+                            self.gameFinished(didWin: false)
+                        }
                     }
                 }
             }

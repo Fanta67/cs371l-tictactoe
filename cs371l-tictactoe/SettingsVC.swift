@@ -10,20 +10,31 @@
 
 import UIKit
 import CoreData
+import AVFoundation
 
 class SettingsVC: UIViewController {
 
     @IBOutlet weak var darkMode: UISwitch!
     @IBOutlet weak var soundOn: UISwitch!
-    
+    var clickPlayer: AVAudioPlayer!
+
+    //set up initial states of switches and create audio player
     override func viewDidLoad() {
         super.viewDidLoad()
         let dark = settings[0]
         let sound = settings[1]
         darkMode.isOn = dark.value(forKeyPath: "isOn") as! Bool
         soundOn.isOn = sound.value(forKeyPath: "isOn") as! Bool
+        
+        let soundFile = NSDataAsset(name: "click")!
+        do {
+            clickPlayer = try AVAudioPlayer(data: soundFile.data, fileTypeHint: "mp3")
+        } catch {
+            print("Failed to create AVAudioPlayer")
+        }
     }
     
+    //open with dark mode or light mode
     override func viewWillAppear(_ animated: Bool) {
         if(settings[0].value(forKeyPath: "isOn") as! Bool) {
             overrideUserInterfaceStyle = .dark
@@ -34,7 +45,12 @@ class SettingsVC: UIViewController {
         }
     }
     
+    //play click sound and save to core data
     @IBAction func toggleDarkMode(_ sender: Any) {
+        if(settings[1].value(forKeyPath: "isOn") as! Bool) {
+            clickPlayer.prepareToPlay()
+            clickPlayer.play()
+        }
         save(which: 0, value: darkMode.isOn)
         if(settings[0].value(forKeyPath: "isOn") as! Bool) {
             overrideUserInterfaceStyle = .dark
@@ -45,10 +61,16 @@ class SettingsVC: UIViewController {
         }
     }
     
+    //play click sound if we toggle on
     @IBAction func toggleSound(_ sender: Any) {
         save(which: 1, value: soundOn.isOn)
+        if(settings[1].value(forKeyPath: "isOn") as! Bool) {
+            clickPlayer.prepareToPlay()
+            clickPlayer.play()
+        }
     }
     
+    //save setting to core data
     func save(which: Int, value: Bool) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
