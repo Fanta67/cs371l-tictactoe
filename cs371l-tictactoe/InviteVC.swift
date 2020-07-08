@@ -54,6 +54,7 @@ class InviteVC: UIViewController {
         inviteLabel.text = inviteCode
         let gameRef = ref.child("games/\(inviteCode)")
         gameRef.child("player1").setValue("player1Name")
+        gameRef.child("player2").removeValue()
         playerID = "player1Name"
         gameRef.child("playerTurn").setValue(1)
         
