@@ -20,6 +20,7 @@
 		FC225CB624B3262700F4C6CC /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC225CB524B3262700F4C6CC /* GameVC.swift */; };
 		FC53543524ADFB550058A7DE /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC53543424ADFB550058A7DE /* MatchCell.swift */; };
 		FC59572524A06FF9009EA08D /* MatchHistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59572424A06FF9009EA08D /* MatchHistVC.swift */; };
+		FC5F759724B61B01000DF466 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5F759624B61B01000DF466 /* AVFoundation.framework */; };
 		FC98E1D724A0707900083232 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC98E1D624A0707900083232 /* SettingsVC.swift */; };
 		FC98E1D924A0734A00083232 /* PostGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC98E1D824A0734900083232 /* PostGameVC.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +43,7 @@
 		FC225CB524B3262700F4C6CC /* GameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
 		FC53543424ADFB550058A7DE /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
 		FC59572424A06FF9009EA08D /* MatchHistVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHistVC.swift; sourceTree = "<group>"; };
+		FC5F759624B61B01000DF466 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		FC98E1D624A0707900083232 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		FC98E1D824A0734900083232 /* PostGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGameVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -51,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC5F759724B61B01000DF466 /* AVFoundation.framework in Frameworks */,
 				C87D75CC769E857A2AE71459 /* Pods_cs371l_tictactoe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,6 +96,7 @@
 		BF48F956CFC1370F99FC0ED5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FC5F759624B61B01000DF466 /* AVFoundation.framework */,
 				82DFEDF786412B86661F52DA /* Pods_cs371l_tictactoe.framework */,
 			);
 			name = Frameworks;

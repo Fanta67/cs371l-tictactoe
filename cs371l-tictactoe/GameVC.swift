@@ -12,6 +12,7 @@ import UIKit
 import CoreData
 import Firebase
 import Foundation
+import AVFoundation
 
 class GameVC: UIViewController {
     
@@ -30,6 +31,7 @@ class GameVC: UIViewController {
     var buttonArray: [UIButton] = []
     let winningCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
     var boardState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    var clickPlayer: AVAudioPlayer!
     
     var inviteCode: String = ""
     var playerID: String = ""
@@ -41,7 +43,14 @@ class GameVC: UIViewController {
         super.viewDidLoad()
         gameRef = Database.database().reference().child("games/\(inviteCode)")
         buttonArray = [button1, button2, button3, button4, button5, button6, button7, button8, button9]
-        print("player id is \(playerID)")
+        let sound = NSDataAsset(name: "click")!
+        do {
+            if (settings[1].value(forKeyPath: "isOn") as! Bool) {
+                clickPlayer = try AVAudioPlayer(data: sound.data, fileTypeHint: "mp3")
+            }
+        } catch {
+            print("Failed to create AVAudioPlayer")
+        }
         attachObserversToBoard()
     }
     
@@ -115,6 +124,10 @@ class GameVC: UIViewController {
     }
     
     @IBAction func buttonPressed(_ sender: Any) {
+        if (clickPlayer != nil) {
+            clickPlayer.prepareToPlay()
+            clickPlayer.play()
+        }
         let button = sender as? UIButton
         //figure out which button was rpessed
         var whichIdx = -1
