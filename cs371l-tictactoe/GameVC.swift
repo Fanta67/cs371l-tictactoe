@@ -150,7 +150,7 @@ class GameVC: UIViewController {
         }
     }
     
-    func gameFinished() {
+    func gameFinished(didWin: Bool) {
         
         // Removing observers to prevent database changes from invoking function calls.
         gameRef.child("playerTurn").removeAllObservers()
@@ -160,7 +160,11 @@ class GameVC: UIViewController {
         // TODO: save screenshot to CoreData
         let absoluteBounds = boardImageView.convert(boardImageView.bounds, to: self.view)
         let image: UIImage = screenshotOfArea(view: self.view, bounds: absoluteBounds)
-        
+        if (didWin) {
+            save(whoWon: "Victory", gameImage: image)
+        } else {
+            save(whoWon: "Defeat", gameImage: image)
+        }
         
         performSegue(withIdentifier: "PostgameSegue", sender: nil)
     }
@@ -191,7 +195,11 @@ class GameVC: UIViewController {
             for combination in self.winningCombinations {
                 //if we find 3 of the same symbol in a row
                 if (boardAsArray[combination[0]] != 0 && boardAsArray[combination[0]] == boardAsArray[combination[1]] && boardAsArray[combination[1]] == boardAsArray[combination[2]]) {
-                    print("yeehaw \(combination)")
+                    if (boardAsArray[combination[0]] == 1 && self.playerID == "player1Name") || (boardAsArray[combination[0]] == 2 && self.playerID == "player2Name") {
+                        self.gameFinished(didWin: true)
+                    } else {
+                        self.gameFinished(didWin: false)
+                    }
                 }
             }
         })
