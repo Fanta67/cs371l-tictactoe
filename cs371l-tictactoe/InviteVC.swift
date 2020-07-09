@@ -18,15 +18,13 @@ class InviteVC: UIViewController {
     var inviteCode = ""
     var playerID = ""
     var refHandle: DatabaseHandle = DatabaseHandle()
-    @IBOutlet weak var statusLabel: UILabel!
     
+    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var inviteTextField: UITextField!
     @IBOutlet weak var inviteLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,6 +37,7 @@ class InviteVC: UIViewController {
         }
     }
     
+    //take segue to game and set up database with a clean game
     @IBAction func onGenerateButtonPressed(_ sender: Any) {
         //inviteCode = randomString(length: 5)
         inviteCode = "game0"
@@ -66,6 +65,7 @@ class InviteVC: UIViewController {
         performSegue(withIdentifier: "InviteToGameSegue", sender: nil)
     }
     
+    //check for valid game and join if the game doesnt have 2 players yet
     @IBAction func onJoinGameButtonPressed(_ sender: Any) {
         inviteCode = inviteTextField.text!
         if inviteCode.isEmpty {

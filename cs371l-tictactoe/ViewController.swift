@@ -43,6 +43,8 @@ class ViewController: UIViewController {
         }
         
 //        DeleteAllData()
+//        DeleteMatchData()
+        
         //first time opening app and nothing in core data
         if (settings.count == 0) {
             saveDefaults()
@@ -63,6 +65,19 @@ class ViewController: UIViewController {
 //            print(error)
 //        }
 //    }
+    
+//    //clear out settings in core data on load for easier testing
+//    func DeleteMatchData(){
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        let managedContext = appDelegate.persistentContainer.viewContext
+//        let DelAllReqVar = NSBatchDeleteRequest(fetchRequest: NSFetchRequest<NSFetchRequestResult>(entityName: "Match"))
+//        do {
+//            try managedContext.execute(DelAllReqVar)
+//        }
+//        catch {
+//            print(error)
+//        }
+//    }
 
     override func viewWillAppear(_ animated: Bool) {
         if(settings[0].value(forKeyPath: "isOn") as! Bool) {
@@ -76,6 +91,7 @@ class ViewController: UIViewController {
         }
     }
     
+    //save default settings value to core data on first launch
     func saveDefaults() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return

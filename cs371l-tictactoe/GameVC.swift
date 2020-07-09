@@ -41,7 +41,7 @@ class GameVC: UIViewController {
     // A reference to the current game.
     var gameRef: DatabaseReference = Database.database().reference()
     
-    //find current game in the database
+    //find current game in the database and attach observers
     override func viewDidLoad() {
         super.viewDidLoad()
         gameRef = Database.database().reference().child("games/\(inviteCode)")
@@ -67,15 +67,7 @@ class GameVC: UIViewController {
         }
     }
     
-    func game() {
-        let playerTurn = gameRef.value(forKey: "playerTurn") as! Int
-        if gameRef.value(forKey: "player\(playerTurn)") as! String == playerID {
-            allowTurn()
-        } else {
-            disallowTurn()
-        }
-    }
-    
+    //allow player to click buttons
     func allowTurn() {
         button1.isEnabled = true
         button2.isEnabled = true
@@ -88,7 +80,8 @@ class GameVC: UIViewController {
         button9.isEnabled = true
         turnLabel.text = "Your turn!"
     }
-        
+    
+    //disallow player from clicking buttons
     func disallowTurn() {
         button1.isEnabled = false
         button2.isEnabled = false
@@ -102,6 +95,7 @@ class GameVC: UIViewController {
         turnLabel.text = "Opponent's turn!"
     }
     
+    //update board in database and change turn
     @IBAction func buttonPressed(_ sender: Any) {
         let button = sender as? UIButton
         //figure out which button was rpessed
