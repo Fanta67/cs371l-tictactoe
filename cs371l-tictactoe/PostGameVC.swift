@@ -15,8 +15,8 @@ class PostGameVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //code to hide navigation bar
-//        self.navigationController?.setNavigationBarHidden(false, animated: true)
-//        self.navigationItem.setHidesBackButton(true, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationItem.setHidesBackButton(true, animated: true)
         // Do any additional setup after loading the view.
     }
     
