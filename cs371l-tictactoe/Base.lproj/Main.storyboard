@@ -290,10 +290,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g0v-uD-A7a">
-                                <rect key="frame" x="20" y="200" width="374" height="374"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="48A-s7-bUe">
+                                <rect key="frame" x="20" y="200" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Ud-lp-fGR" userLabel="Board Image View">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="374"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fSN-vq-PD1" userLabel="Board Image View">
+                                        <rect key="frame" x="0.0" y="0.0" width="118" height="118"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bO9-It-zu8" userLabel="Board Image View">
+                                        <rect key="frame" x="128" y="0.0" width="118" height="118"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EBV-1r-VUb" userLabel="Board Image View">
+                                        <rect key="frame" x="256" y="0.0" width="118" height="118"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qtr-bg-9H5" userLabel="Board Image View">
+                                        <rect key="frame" x="0.0" y="128" width="118" height="118"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3ed-Df-R3X" userLabel="Board Image View">
+                                        <rect key="frame" x="128" y="128" width="118" height="118"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jwp-va-NRJ" userLabel="Board Image View">
+                                        <rect key="frame" x="256" y="128" width="118" height="118"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q8G-41-LC5" userLabel="Board Image View">
+                                        <rect key="frame" x="0.0" y="256" width="118" height="118"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VXw-XJ-bMY" userLabel="Board Image View">
+                                        <rect key="frame" x="128" y="256" width="118" height="118"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zUQ-Cs-Y6e" userLabel="Board Image View">
+                                        <rect key="frame" x="256" y="256" width="118" height="118"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Result" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cpn-DH-CQT">
                                 <rect key="frame" x="20" y="620" width="374" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -315,8 +358,17 @@
                     </view>
                     <navigationItem key="navigationItem" title="Postgame" id="YPz-lP-HD7"/>
                     <connections>
-                        <outlet property="imageView" destination="g0v-uD-A7a" id="xK1-Nc-ZGX"/>
+                        <outlet property="boardImageView" destination="8Ud-lp-fGR" id="2ep-mX-iz9"/>
                         <outlet property="label" destination="Cpn-DH-CQT" id="Y3S-gw-DPf"/>
+                        <outlet property="panel1" destination="fSN-vq-PD1" id="619-OU-vcc"/>
+                        <outlet property="panel2" destination="bO9-It-zu8" id="f1m-zM-v2H"/>
+                        <outlet property="panel3" destination="EBV-1r-VUb" id="CPW-ac-dGB"/>
+                        <outlet property="panel4" destination="Qtr-bg-9H5" id="HMd-hb-PwJ"/>
+                        <outlet property="panel5" destination="3ed-Df-R3X" id="Td9-2V-Sop"/>
+                        <outlet property="panel6" destination="jwp-va-NRJ" id="au9-Wt-vpy"/>
+                        <outlet property="panel7" destination="q8G-41-LC5" id="z1o-bQ-W00"/>
+                        <outlet property="panel8" destination="VXw-XJ-bMY" id="St5-Af-Tl6"/>
+                        <outlet property="panel9" destination="zUQ-Cs-Y6e" id="khh-vc-hlf"/>
                         <segue destination="KXF-TW-mFh" kind="presentation" identifier="PostgameToMainMenuSegue" modalPresentationStyle="fullScreen" id="5mk-FY-DwU"/>
                     </connections>
                 </viewController>
