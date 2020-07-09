@@ -63,9 +63,7 @@ class MatchHistVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: "MatchCell", for: indexPath as IndexPath) as! MatchCell
         let row = indexPath.row
         let match = matchTable[row]
-        cell.whoWon.text = match.value(forKeyPath: "whoWon") as? String
-        let gameImageData = match.value(forKeyPath: "gameImage") as! Data
-        cell.gameImage.image = UIImage(data: gameImageData)
+        cell.setFieldsFromCoreData(match: match)
         
         return cell
     }
@@ -76,11 +74,6 @@ class MatchHistVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "MatchHistToPostgameSegue" {
-            
-//            guard let selectedIndex = tableView.indexPathForSelectedRow?.row else {
-//                print("Error: Table view has no selected row")
-//                abort()
-//            }
             let destination = segue.destination as! PostGameVC
             destination.match = matchTable[tableView.indexPathForSelectedRow!.row]
         }

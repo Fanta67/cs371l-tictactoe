@@ -198,10 +198,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="title_cross" translatesAutoresizingMaskIntoConstraints="NO" id="bJf-d8-Xhw">
-                                                    <rect key="frame" x="14" y="11" width="128" height="128"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="RESULT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYb-6H-aUV">
                                                     <rect key="frame" x="150" y="11" width="204" height="128"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -209,10 +205,66 @@
                                                     <color key="textColor" systemColor="systemGreenColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a1h-Kq-NYO">
+                                                    <rect key="frame" x="14" y="11" width="124.66666666666666" height="124.66666666666666"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="board-10pix-black-opaque" translatesAutoresizingMaskIntoConstraints="NO" id="bJf-d8-Xhw" userLabel="Board Image">
+                                                            <rect key="frame" x="0.0" y="0.0" width="124.66666666666666" height="124.66666666666666"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pzQ-V1-DF5" userLabel="Panel">
+                                                            <rect key="frame" x="0.0" y="0.0" width="39.333333333333329" height="39.333333333333329"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9j9-SJ-VWa" userLabel="Panel">
+                                                            <rect key="frame" x="42.666666666666664" y="0.0" width="39.333333333333329" height="39.333333333333329"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qwZ-46-Mpf" userLabel="Panel">
+                                                            <rect key="frame" x="85.333333333333329" y="0.0" width="39.333333333333329" height="39.333333333333329"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d3D-WO-XaB" userLabel="Panel">
+                                                            <rect key="frame" x="0.0" y="42.666666666666664" width="39.333333333333329" height="39.333333333333329"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p6o-8G-d68" userLabel="Panel">
+                                                            <rect key="frame" x="42.666666666666664" y="42.666666666666664" width="39.333333333333329" height="39.333333333333329"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MVe-TN-rRP" userLabel="Panel">
+                                                            <rect key="frame" x="85.333333333333329" y="42.666666666666664" width="39.333333333333329" height="39.333333333333329"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5j8-bI-co0" userLabel="Panel">
+                                                            <rect key="frame" x="0.0" y="85.333333333333329" width="39.333333333333329" height="39.333333333333329"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7pm-03-jV0" userLabel="Panel">
+                                                            <rect key="frame" x="42.666666666666664" y="85.333333333333329" width="39.333333333333329" height="39.333333333333329"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GmY-hW-xjC" userLabel="Panel">
+                                                            <rect key="frame" x="85.333333333333329" y="85.333333333333329" width="39.333333333333329" height="39.333333333333329"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                </view>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="gameImage" destination="bJf-d8-Xhw" id="fVk-bj-myz"/>
+                                            <outlet property="boardImageView" destination="bJf-d8-Xhw" id="mmv-lc-emJ"/>
+                                            <outlet property="panel1" destination="pzQ-V1-DF5" id="x4i-GW-1Iy"/>
+                                            <outlet property="panel2" destination="9j9-SJ-VWa" id="74h-tq-epf"/>
+                                            <outlet property="panel3" destination="qwZ-46-Mpf" id="zxL-GH-z3N"/>
+                                            <outlet property="panel4" destination="d3D-WO-XaB" id="2vI-2t-cuF"/>
+                                            <outlet property="panel5" destination="p6o-8G-d68" id="aTa-mp-gKh"/>
+                                            <outlet property="panel6" destination="MVe-TN-rRP" id="67i-uB-l3S"/>
+                                            <outlet property="panel7" destination="5j8-bI-co0" id="OWk-X0-HKl"/>
+                                            <outlet property="panel8" destination="7pm-03-jV0" id="Ybu-ED-ryE"/>
+                                            <outlet property="panel9" destination="GmY-hW-xjC" id="KNV-P3-nJV"/>
                                             <outlet property="whoWon" destination="hYb-6H-aUV" id="pWw-LS-o5Y"/>
                                         </connections>
                                     </tableViewCell>
@@ -291,7 +343,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="48A-s7-bUe">
-                                <rect key="frame" x="20" y="200" width="240" height="128"/>
+                                <rect key="frame" x="20" y="200" width="374" height="374"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Ud-lp-fGR" userLabel="Board Image View">
@@ -359,6 +411,7 @@
                     <navigationItem key="navigationItem" title="Postgame" id="YPz-lP-HD7"/>
                     <connections>
                         <outlet property="boardImageView" destination="8Ud-lp-fGR" id="2ep-mX-iz9"/>
+                        <outlet property="boardView" destination="48A-s7-bUe" id="IhW-AH-1Zk"/>
                         <outlet property="label" destination="Cpn-DH-CQT" id="Y3S-gw-DPf"/>
                         <outlet property="panel1" destination="fSN-vq-PD1" id="619-OU-vcc"/>
                         <outlet property="panel2" destination="bO9-It-zu8" id="f1m-zM-v2H"/>
@@ -519,13 +572,13 @@
     </scenes>
     <resources>
         <image name="arrow.right.square" catalog="system" width="64" height="56"/>
+        <image name="board-10pix-black-opaque" width="374" height="374"/>
         <image name="board-10pix-black-transparent" width="374" height="374"/>
         <image name="square.and.arrow.up" catalog="system" width="56" height="64"/>
         <image name="title-board-black-transparent" width="374" height="374"/>
-        <image name="title_cross" width="1200" height="1200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ac9-V1-mmZ"/>
+        <segue reference="HXW-Yw-PRR"/>
         <segue reference="Fzq-RR-B4E"/>
     </inferredMetricsTieBreakers>
 </document>

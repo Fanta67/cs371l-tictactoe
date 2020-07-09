@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="18G103" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="DarkMode" representedClassName="DarkMode" syncable="YES" codeGenerationType="class">
         <attribute name="isOn" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <entity name="Match" representedClassName="Match" syncable="YES" codeGenerationType="class">
-        <attribute name="gameImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="gameState" optional="YES" attributeType="Transformable"/>
         <attribute name="whoWon" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Sound" representedClassName="Sound" syncable="YES" codeGenerationType="class">
@@ -12,7 +12,7 @@
     </entity>
     <elements>
         <element name="DarkMode" positionX="-63" positionY="-18" width="128" height="58"/>
-        <element name="Sound" positionX="-54" positionY="0" width="128" height="58"/>
         <element name="Match" positionX="-54" positionY="0" width="128" height="73"/>
+        <element name="Sound" positionX="-54" positionY="0" width="128" height="58"/>
     </elements>
 </model>
