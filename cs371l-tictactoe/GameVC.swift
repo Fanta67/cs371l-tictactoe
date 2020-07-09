@@ -314,7 +314,6 @@ class GameVC: UIViewController {
         
         // Change color mode back to settings-specified.
         changeViewBasedOnColorMode()
-        disallowTurn()
         
         return result
     }
