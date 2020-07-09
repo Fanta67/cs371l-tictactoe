@@ -150,7 +150,7 @@ class GameVC: UIViewController {
             let absoluteBounds = self.boardImageView.convert(self.boardImageView.bounds, to: self.view)
             let image: UIImage = self.screenshotOfArea(view: self.view, bounds: absoluteBounds)
             if (didWin) {
-                //self.save(whoWon: "Victory", gameImage: image)
+                self.save(whoWon: "Victory", gameImage: image)
                 let sound = NSDataAsset(name: "victory")!
                 do {
                     self.endgamePlayer = try AVAudioPlayer(data: sound.data, fileTypeHint: "mp3")
@@ -161,7 +161,7 @@ class GameVC: UIViewController {
                     print("Failed to create AVAudioPlayer")
                 }
             } else {
-                //self.save(whoWon: "Defeat", gameImage: image)
+                self.save(whoWon: "Defeat", gameImage: image)
                 let sound = NSDataAsset(name: "defeat")!
                 do {
                     self.endgamePlayer = try AVAudioPlayer(data: sound.data, fileTypeHint: "mp3")
@@ -185,13 +185,15 @@ class GameVC: UIViewController {
         let managedContext = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Match", in: managedContext)!
         let match = NSManagedObject(entity: entity, insertInto: managedContext)
+        let imageData = gameImage.jpegData(compressionQuality: 1.0)
         
         match.setValue(whoWon, forKey: "whoWon")
-        match.setValue(gameImage, forKey: "gameImage")
+        match.setValue(imageData, forKey: "gameImage")
     
         do {
             try managedContext.save()
             matchTable.append(match)
+            print("saved")
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
             abort()
