@@ -379,7 +379,22 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Join Game"/>
                                         <connections>
-                                            <action selector="onJoinInviteButtonPressed:" destination="jND-vz-5Ln" eventType="touchUpInside" id="YtB-GD-1pc"/>
+                                            <action selector="onJoinButtonPressed:" destination="jND-vz-5Ln" eventType="touchUpInside" id="f4x-y4-Kee"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rejoin game0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpD-HU-the">
+                                        <rect key="frame" x="136" y="300" width="116" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="njh-Xd-XGl">
+                                        <rect key="frame" x="247" y="300" width="30" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="arrow.right.square" catalog="system"/>
+                                        <connections>
+                                            <action selector="onJoinRejoinButtonPressed:" destination="jND-vz-5Ln" eventType="touchUpInside" id="UA2-v2-kXF"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -396,14 +411,6 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kZC-hf-cb0">
-                                        <rect key="frame" x="333" y="153" width="73" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Join Game"/>
-                                        <connections>
-                                            <action selector="onJoinCreateButtonPressed:" destination="jND-vz-5Ln" eventType="touchUpInside" id="Kw1-Gz-9H7"/>
-                                        </connections>
-                                    </button>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z3Q-Bt-IfY">
                                         <rect key="frame" x="137" y="151" width="140" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -411,6 +418,29 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="one-time-code"/>
                                     </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rejoin game0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwc-gN-zWa">
+                                        <rect key="frame" x="136" y="300" width="116" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zFr-gp-63b">
+                                        <rect key="frame" x="247" y="300" width="30" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="arrow.right.square" catalog="system"/>
+                                        <connections>
+                                            <action selector="onCreateRejoinButtonPressed:" destination="jND-vz-5Ln" eventType="touchUpInside" id="N1l-X7-ynC"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kZC-hf-cb0">
+                                        <rect key="frame" x="316" y="153" width="90" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Create Game"/>
+                                        <connections>
+                                            <action selector="onCreateButtonPressed:" destination="jND-vz-5Ln" eventType="touchUpInside" id="O7c-4A-I88"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -420,8 +450,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="Invite/Join" id="ASC-YK-Qwr"/>
                     <connections>
+                        <outlet property="createRejoinButton" destination="zFr-gp-63b" id="mtp-VB-TNf"/>
+                        <outlet property="createRejoinLabel" destination="cwc-gN-zWa" id="q2N-7S-lWr"/>
                         <outlet property="createTextField" destination="Z3Q-Bt-IfY" id="CsV-Cc-Dop"/>
                         <outlet property="inviteTextField" destination="G6J-S4-yrR" id="hG6-ix-Udb"/>
+                        <outlet property="joinRejoinButton" destination="njh-Xd-XGl" id="jOd-Wk-svZ"/>
+                        <outlet property="joinRejoinLabel" destination="vpD-HU-the" id="F7W-7L-5sX"/>
                         <outlet property="statusLabel" destination="TxS-MH-xMf" id="wMq-ma-EqU"/>
                         <segue destination="Tmv-RG-5TE" kind="show" identifier="InviteToGameSegue" id="Fzq-RR-B4E"/>
                     </connections>
@@ -432,13 +466,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.right.square" catalog="system" width="64" height="56"/>
         <image name="board-10pix-black-transparent" width="374" height="374"/>
         <image name="square.and.arrow.up" catalog="system" width="56" height="64"/>
         <image name="title-board-black-transparent" width="374" height="374"/>
         <image name="title_cross" width="1200" height="1200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HXW-Yw-PRR"/>
+        <segue reference="Ac9-V1-mmZ"/>
         <segue reference="Fzq-RR-B4E"/>
     </inferredMetricsTieBreakers>
 </document>

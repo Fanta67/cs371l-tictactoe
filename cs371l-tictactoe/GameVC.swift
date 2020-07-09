@@ -37,6 +37,9 @@ class GameVC: UIViewController {
     var clickPlayer: AVAudioPlayer!
     var endgamePlayer: AVAudioPlayer!
     
+    var boardObserverHandle: UInt = 0
+    var turnObserverHandle: UInt = 0
+    
     var inviteCode: String = ""
     var playerID: String = ""
     var finishedMatch: NSManagedObject!
@@ -46,6 +49,7 @@ class GameVC: UIViewController {
     //find current game in the database and attach observers
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = inviteCode
         gameRef = Database.database().reference().child("games/\(inviteCode)")
         buttonArray = [button1, button2, button3, button4, button5, button6, button7, button8, button9]
         let sound = NSDataAsset(name: "click")!
@@ -67,6 +71,13 @@ class GameVC: UIViewController {
             self.navigationController?.navigationBar.barTintColor = .white
             boardImageView.image = UIImage(named: "board-10pix-black-transparent")
         }
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        // Removes observers, will be re-added when viewDidLoad is called again.
+        gameRef.child("board").removeObserver(withHandle: boardObserverHandle)
+        gameRef.child("playerTurn").removeObserver(withHandle: turnObserverHandle)
     }
     
     /// Changes view to light/dark mode based on setting.
@@ -150,9 +161,16 @@ class GameVC: UIViewController {
     //save match to core data and transition to postgame
     func gameFinished(didWin: Int) {
         
+        if currentClientGame == inviteCode {
+            currentClientGame = ""
+        }
+        if currentHostGame == inviteCode {
+            currentHostGame = ""
+        }
+        
         // Removing observers to prevent database changes from invoking function calls.
-        gameRef.child("playerTurn").removeAllObservers()
-        gameRef.child("board").removeAllObservers()
+        gameRef.child("board").removeObserver(withHandle: boardObserverHandle)
+        gameRef.child("playerTurn").removeObserver(withHandle: turnObserverHandle)
         
         // Taking screenshot of final board state, play victory or defeat sound or no sound if draw
         //DispatchQueue.main.async {
@@ -208,12 +226,10 @@ class GameVC: UIViewController {
         match.setValue(imageData, forKey: "gameImage")
         
         finishedMatch = match
-        print("set gamevc's finishedMatch")
     
         do {
             try managedContext.save()
             matchTable.append(match)
-            print("saved")
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
             abort()
@@ -224,8 +240,6 @@ class GameVC: UIViewController {
         if segue.identifier == "PostgameSegue" {
             let destination = segue.destination as! PostGameVC
             destination.match = finishedMatch
-            print("set postgameVC's finishedMatch")
-            //destination.navigationItem.setHidesBackButton(true, animated: true)
             destination.changeBackButtonToX()
         }
     }
@@ -235,10 +249,10 @@ class GameVC: UIViewController {
     func attachObserversToBoard() {
         
         // Attaching board observer.
-        gameRef.child("board").observe(DataEventType.value, with: { (snapshot) in
+        boardObserverHandle = gameRef.child("board").observe(DataEventType.value, with: { (snapshot) in
             // Casts snapshot as an array
             guard let board = snapshot.value as? NSMutableArray else {
-                print("CASTING BOARD AS ARRAY ERROR")
+                print("Error: Casting Board As Array")
                 return
             }
             //play button click whenever board changes
@@ -282,7 +296,7 @@ class GameVC: UIViewController {
         
         // Attaching playerTurn observer. It automatically disables/enables turn
         // based on if playerID matches playerTurn.
-        gameRef.child("playerTurn").observe(DataEventType.value, with: { (snapshot) in
+        turnObserverHandle = gameRef.child("playerTurn").observe(DataEventType.value, with: { (snapshot) in
             let playerTurn = (snapshot.value as? Int)!
             if self.playerID == "player\(playerTurn)Name" {
                 self.allowTurn()
@@ -290,7 +304,6 @@ class GameVC: UIViewController {
                 self.disallowTurn()
             }
         })
-        
     }
     
     /// Takes a screenshot of specified area and returns it as a UIImage.

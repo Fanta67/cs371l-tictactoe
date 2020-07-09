@@ -12,13 +12,20 @@ import UIKit
 import Firebase
 
 var ref: DatabaseReference = Database.database().reference()
+var currentHostGame: String = ""
+var currentClientGame: String = ""
+var currentHostGameVC: GameVC? = nil
+var currentClientGameVC: GameVC? = nil
 
 class InviteVC: UIViewController, UITextFieldDelegate {
     
     var inviteCode: String = ""
     var playerID: String = ""
     var refHandle: DatabaseHandle = DatabaseHandle()
-    
+    @IBOutlet weak var joinRejoinLabel: UILabel!
+    @IBOutlet weak var joinRejoinButton: UIButton!
+    @IBOutlet weak var createRejoinLabel: UILabel!
+    @IBOutlet weak var createRejoinButton: UIButton!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var inviteTextField: UITextField!
     @IBOutlet weak var createTextField: UITextField!
@@ -50,14 +57,33 @@ class InviteVC: UIViewController, UITextFieldDelegate {
             }
         })
         createTextField.text = inviteCode
+        
+        // Show rejoin options if currently in a game.
+        if currentClientGame == "" {
+            joinRejoinButton.isHidden = true
+            joinRejoinLabel.isHidden = true
+        } else {
+            joinRejoinButton.isHidden = false
+            joinRejoinLabel.isHidden = false
+            joinRejoinLabel.text = "Rejoin \(currentClientGame)"
+        }
+        if currentHostGame == "" {
+            createRejoinButton.isHidden = true
+            createRejoinLabel.isHidden = true
+        } else {
+            createRejoinButton.isHidden = false
+            createRejoinLabel.isHidden = false
+            createRejoinLabel.text = "Rejoin \(currentHostGame)"
+        }
     }
     
     //take segue to game and set up database with a clean game
-    @IBAction func onJoinCreateButtonPressed(_ sender: Any) {
+    @IBAction func onCreateButtonPressed(_ sender: Any) {
         ref.child("games").observeSingleEvent(of: .value, with: { (snapshot) in
             if !snapshot.hasChild(self.inviteCode) {
                 self.setUpGame()
             }
+            currentHostGame = self.inviteCode
             self.performSegue(withIdentifier: "InviteToGameSegue", sender: nil)
         })
     }
@@ -77,7 +103,10 @@ class InviteVC: UIViewController, UITextFieldDelegate {
     }
     
     //check for valid game and join if the game doesnt have 2 players yet
-    @IBAction func onJoinInviteButtonPressed(_ sender: Any) {
+    
+    @IBAction func onJoinButtonPressed(_ sender: Any) {
+        inviteTextField.resignFirstResponder()
+        
         inviteCode = inviteTextField.text!
         if inviteCode.isEmpty {
             self.statusLabel.text = "Invalid invite code - please enter a code"
@@ -94,13 +123,11 @@ class InviteVC: UIViewController, UITextFieldDelegate {
         // Read and check database for valid game.
         ref.child("games").observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.hasChild(self.inviteCode) {
-                //if !snapshot.hasChild("\(self.inviteCode)/player2") {
-                    ref.child("games/\(self.inviteCode)/player2").setValue("player2Name")
-                    self.playerID = "player2Name"
-                    self.performSegue(withIdentifier: "InviteToGameSegue", sender: nil)
-                //} else {
-                //    self.statusLabel.text = "Invalid invite code - two players already in game"
-                //}
+                ref.child("games/\(self.inviteCode)/player2").setValue("player2Name")
+                self.playerID = "player2Name"
+                currentClientGame = self.inviteCode
+                self.statusLabel.text = ""
+                self.performSegue(withIdentifier: "InviteToGameSegue", sender: nil)
             } else {
                 self.statusLabel.text = "Invalid invite code - game does not exist"
             }
@@ -111,34 +138,39 @@ class InviteVC: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let segueIdentifier = segue.identifier else { return }
         if segueIdentifier == "InviteToGameSegue" {
-            (segue.destination as! GameVC).inviteCode = inviteCode
-            (segue.destination as! GameVC).playerID = self.playerID
+            let destination = segue.destination as! GameVC
+            destination.inviteCode = inviteCode
+            destination.playerID = self.playerID
         }
     }
+    @IBAction func onJoinRejoinButtonPressed(_ sender: Any) {
+        inviteCode = currentClientGame
+        performSegue(withIdentifier: "InviteToGameSegue", sender: nil)
+    }
+    @IBAction func onCreateRejoinButtonPressed(_ sender: Any) {
+        inviteCode = currentHostGame
+        performSegue(withIdentifier: "InviteToGameSegue", sender: nil)
+    }
     
-    /// Generates a random alphanumeric String. A length of 5 produces 1 in a million chances.
+    /// Generates a random alphanumeric String excluding l, I, 0, and O. A length of 5 produces 1 in a million chances.
     ///
     /// - Parameters:
     ///   - length: The amount of characters in the randomized String.
     func randomString(length: Int = 5) -> String {
-        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let letters = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ123456789"
         return String((0..<length).map{ _ in letters.randomElement()! })
     }
 
+    // Functions to customize text fields.
     @objc func dismissKeyboard() {
         inviteTextField.resignFirstResponder()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         inviteTextField.resignFirstResponder()
-        onJoinInviteButtonPressed("")
+        onJoinButtonPressed("")
         return true
     }
-    
-    /*
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return false
-    }*/
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == createTextField {
@@ -146,9 +178,4 @@ class InviteVC: UIViewController, UITextFieldDelegate {
         }
         return true
     }
-    
-    /*
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        
-    }*/
 }
