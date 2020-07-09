@@ -133,17 +133,17 @@ class GameVC: UIViewController {
     }
     
     //save match to core data and transition to postgame
-    func gameFinished(didWin: Bool) {
+    func gameFinished(didWin: Int) {
         
         // Removing observers to prevent database changes from invoking function calls.
         gameRef.child("playerTurn").removeAllObservers()
         gameRef.child("board").removeAllObservers()
         
-        // Taking screenshot of final board state
+        // Taking screenshot of final board state, play victory or defeat sound or no sound if draw
         DispatchQueue.main.async {
             let absoluteBounds = self.boardImageView.convert(self.boardImageView.bounds, to: self.view)
             let image: UIImage = self.screenshotOfArea(view: self.view, bounds: absoluteBounds)
-            if (didWin) {
+            if (didWin == 1) {
                 self.save(whoWon: "Victory", gameImage: image)
                 let sound = NSDataAsset(name: "victory")!
                 do {
@@ -154,7 +154,7 @@ class GameVC: UIViewController {
                 } catch {
                     print("Failed to create AVAudioPlayer")
                 }
-            } else {
+            } else if (didWin == 0) {
                 self.save(whoWon: "Defeat", gameImage: image)
                 let sound = NSDataAsset(name: "defeat")!
                 do {
@@ -164,6 +164,8 @@ class GameVC: UIViewController {
                 } catch {
                     print("Failed to create AVAudioPlayer")
                 }
+            } else {
+                self.save(whoWon: "Draw", gameImage: image)
             }
         }
         
@@ -213,26 +215,33 @@ class GameVC: UIViewController {
             //update board images
             let boardAsArray = board as! [Int]
             DispatchQueue.main.async {
+                var emptySpace = false
                 for i in 0..<boardAsArray.count {
                     if (boardAsArray[i] == 1) {
                         self.buttonArray[i].setImage(UIImage(named: "x.png"), for: .normal)
                     } else if (boardAsArray[i] == 2) {
                         self.buttonArray[i].setImage(UIImage(named: "o.png"), for: .normal)
                     } else {
+                        emptySpace = true
                         self.buttonArray[i].setImage(nil, for: .normal)
                     }
                 }
-            
+                
                 //check for win
                 for combination in self.winningCombinations {
                     //if we find 3 of the same symbol in a row
                     if (boardAsArray[combination[0]] != 0 && boardAsArray[combination[0]] == boardAsArray[combination[1]] && boardAsArray[combination[1]] == boardAsArray[combination[2]]) {
                         if (boardAsArray[combination[0]] == 1 && self.playerID == "player1Name") || (boardAsArray[combination[0]] == 2 && self.playerID == "player2Name") {
-                            self.gameFinished(didWin: true)
+                            self.gameFinished(didWin: 1)
                         } else {
-                            self.gameFinished(didWin: false)
+                            self.gameFinished(didWin: 0)
                         }
                     }
+                }
+                
+                //board is filled and no win, game is a draw
+                if (!emptySpace) {
+                    self.gameFinished(didWin: 2)
                 }
             }
         })
