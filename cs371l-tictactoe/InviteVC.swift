@@ -13,18 +13,26 @@ import Firebase
 
 var ref: DatabaseReference = Database.database().reference()
 
-class InviteVC: UIViewController {
+class InviteVC: UIViewController, UITextFieldDelegate {
     
-    var inviteCode = ""
-    var playerID = ""
+    var inviteCode: String = ""
+    var playerID: String = ""
     var refHandle: DatabaseHandle = DatabaseHandle()
     
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var inviteTextField: UITextField!
-    @IBOutlet weak var inviteLabel: UILabel!
+    @IBOutlet weak var createTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Allows for customized behavior for text fields.
+        inviteTextField.delegate = self
+        createTextField.delegate = self
+        createTextField.inputView = UIView.init(frame: CGRect.zero)
+        
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapRecognizer)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,22 +43,27 @@ class InviteVC: UIViewController {
             overrideUserInterfaceStyle = .light
             self.navigationController?.navigationBar.barTintColor = .white
         }
-    }
-    
-    //take segue to game and set up database with a clean game
-    @IBAction func onGenerateButtonPressed(_ sender: Any) {
-        //inviteCode = randomString(length: 5)
-        inviteCode = "game0"
-        /*
-        let single = ref.child("games").observeSingleEvent(of: .value, with: { (snapshot) in
+        inviteCode = randomString(length: 5)
+        ref.child("games").observeSingleEvent(of: .value, with: { (snapshot) in
             while snapshot.hasChild(self.inviteCode) {
                 self.inviteCode = self.randomString(length: 5)
             }
         })
-         */
-        
-        // Invite Code is valid, set up game.
-        inviteLabel.text = inviteCode
+        createTextField.text = inviteCode
+    }
+    
+    //take segue to game and set up database with a clean game
+    @IBAction func onJoinCreateButtonPressed(_ sender: Any) {
+        ref.child("games").observeSingleEvent(of: .value, with: { (snapshot) in
+            if !snapshot.hasChild(self.inviteCode) {
+                self.setUpGame()
+            }
+            self.performSegue(withIdentifier: "InviteToGameSegue", sender: nil)
+        })
+    }
+    
+    func setUpGame() {
+        createTextField.text = inviteCode
         let gameRef = ref.child("games/\(inviteCode)")
         gameRef.child("player1").setValue("player1Name")
         gameRef.child("player2").removeValue()
@@ -61,12 +74,10 @@ class InviteVC: UIViewController {
         let boardArray = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         let boardDict = ["board" : boardArray]
         gameRef.updateChildValues(boardDict)
-        
-        performSegue(withIdentifier: "InviteToGameSegue", sender: nil)
     }
     
     //check for valid game and join if the game doesnt have 2 players yet
-    @IBAction func onJoinGameButtonPressed(_ sender: Any) {
+    @IBAction func onJoinInviteButtonPressed(_ sender: Any) {
         inviteCode = inviteTextField.text!
         if inviteCode.isEmpty {
             self.statusLabel.text = "Invalid invite code - please enter a code"
@@ -83,17 +94,26 @@ class InviteVC: UIViewController {
         // Read and check database for valid game.
         ref.child("games").observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.hasChild(self.inviteCode) {
-                if !snapshot.hasChild("\(self.inviteCode)/player2") {
+                //if !snapshot.hasChild("\(self.inviteCode)/player2") {
                     ref.child("games/\(self.inviteCode)/player2").setValue("player2Name")
                     self.playerID = "player2Name"
                     self.performSegue(withIdentifier: "InviteToGameSegue", sender: nil)
-                } else {
-                    self.statusLabel.text = "Invalid invite code - two players already in game"
-                }
+                //} else {
+                //    self.statusLabel.text = "Invalid invite code - two players already in game"
+                //}
             } else {
                 self.statusLabel.text = "Invalid invite code - game does not exist"
             }
         })
+    }
+    
+    /// Enter into game with player id and invite code to access game via database.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let segueIdentifier = segue.identifier else { return }
+        if segueIdentifier == "InviteToGameSegue" {
+            (segue.destination as! GameVC).inviteCode = inviteCode
+            (segue.destination as! GameVC).playerID = self.playerID
+        }
     }
     
     /// Generates a random alphanumeric String. A length of 5 produces 1 in a million chances.
@@ -104,14 +124,31 @@ class InviteVC: UIViewController {
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         return String((0..<length).map{ _ in letters.randomElement()! })
     }
-    
-    //enter game with player id and invite code to access game
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let segueIdentifier = segue.identifier else { return }
-        if segueIdentifier == "InviteToGameSegue" {
-            (segue.destination as! GameVC).inviteCode = inviteCode
-            (segue.destination as! GameVC).playerID = self.playerID
-        }
+
+    @objc func dismissKeyboard() {
+        inviteTextField.resignFirstResponder()
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        inviteTextField.resignFirstResponder()
+        onJoinInviteButtonPressed("")
+        return true
+    }
+    
+    /*
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return false
+    }*/
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == createTextField {
+            return false
+        }
+        return true
+    }
+    
+    /*
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        
+    }*/
 }

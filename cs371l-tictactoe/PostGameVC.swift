@@ -63,11 +63,11 @@ class PostGameVC: UIViewController, UIActivityItemSource {
         let result = match.value(forKeyPath: "whoWon") as? String
         switch result {
         case "Victory":
-            metadata.title = "I emerged victorious from a game of Tic Tac Toe!"
+            metadata.title = "I emerged victorious from Tic Tac Toe!"
         case "Defeat":
-            metadata.title = "I got messed up in Tic Tac Toe..."
+            metadata.title = "I got messed up in Tic Tac Toe"
         case "Draw":
-            metadata.title = "Yet another uneventful game of Tic Tac Toe..."
+            metadata.title = "Another uneventful game of Tic Tac Toe"
         default:
             metadata.title = "Tic Tac Toe"
         }
