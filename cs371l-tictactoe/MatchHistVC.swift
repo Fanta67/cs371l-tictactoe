@@ -11,7 +11,7 @@
 import UIKit
 import CoreData
 
-public var matchTable:[NSManagedObject] = []
+public var matchTable: [NSManagedObject] = []
 
 class MatchHistVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -42,7 +42,7 @@ class MatchHistVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Match")
         
         do {
-            try matchTable = managedContext.fetch(fetchRequest)
+            try matchTable = managedContext.fetch(fetchRequest).reversed()
             tableView.reloadData()
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
@@ -64,9 +64,25 @@ class MatchHistVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         let row = indexPath.row
         let match = matchTable[row]
         cell.whoWon.text = match.value(forKeyPath: "whoWon") as? String
-        cell.gameImage.image = match.value(forKeyPath: "gameImage") as? UIImage
+        let gameImageData = match.value(forKeyPath: "gameImage") as! Data
+        cell.gameImage.image = UIImage(data: gameImageData)
+        
         return cell
     }
     
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "MatchHistToPostgameSegue", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "MatchHistToPostgameSegue" {
+            
+//            guard let selectedIndex = tableView.indexPathForSelectedRow?.row else {
+//                print("Error: Table view has no selected row")
+//                abort()
+//            }
+            let destination = segue.destination as! PostGameVC
+            destination.match = matchTable[tableView.indexPathForSelectedRow!.row]
+        }
+    }
 }

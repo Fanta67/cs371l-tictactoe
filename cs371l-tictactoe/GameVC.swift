@@ -28,6 +28,7 @@ class GameVC: UIViewController {
     @IBOutlet weak var turnLabel: UILabel!
     @IBOutlet weak var boardImageView: UIImageView!
     @IBOutlet weak var boardView: UIView!
+    
     var buttonArray: [UIButton] = []
     
     let winningCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
@@ -38,6 +39,7 @@ class GameVC: UIViewController {
     
     var inviteCode: String = ""
     var playerID: String = ""
+    var finishedMatch: NSManagedObject!
     // A reference to the current game.
     var gameRef: DatabaseReference = Database.database().reference()
     
@@ -56,6 +58,19 @@ class GameVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if(settings[0].value(forKeyPath: "isOn") as! Bool) {
+            overrideUserInterfaceStyle = .dark
+            self.navigationController?.navigationBar.barTintColor = .black
+            boardImageView.image = UIImage(named: "board-10pix-white-transparent")
+        } else {
+            overrideUserInterfaceStyle = .light
+            self.navigationController?.navigationBar.barTintColor = .white
+            boardImageView.image = UIImage(named: "board-10pix-black-transparent")
+        }
+    }
+    
+    /// Changes view to light/dark mode based on setting.
+    func changeViewBasedOnColorMode() {
         if(settings[0].value(forKeyPath: "isOn") as! Bool) {
             overrideUserInterfaceStyle = .dark
             self.navigationController?.navigationBar.barTintColor = .black
@@ -140,9 +155,15 @@ class GameVC: UIViewController {
         gameRef.child("board").removeAllObservers()
         
         // Taking screenshot of final board state, play victory or defeat sound or no sound if draw
-        DispatchQueue.main.async {
+        //DispatchQueue.main.async {
             let absoluteBounds = self.boardImageView.convert(self.boardImageView.bounds, to: self.view)
+            
+            
+        
             let image: UIImage = self.screenshotOfArea(view: self.view, bounds: absoluteBounds)
+            
+            self.changeViewBasedOnColorMode()
+            
             if (didWin == 1) {
                 self.save(whoWon: "Victory", gameImage: image)
                 let sound = NSDataAsset(name: "victory")!
@@ -167,7 +188,7 @@ class GameVC: UIViewController {
             } else {
                 self.save(whoWon: "Draw", gameImage: image)
             }
-        }
+        //}
         
         performSegue(withIdentifier: "PostgameSegue", sender: nil)
     }
@@ -185,6 +206,9 @@ class GameVC: UIViewController {
         
         match.setValue(whoWon, forKey: "whoWon")
         match.setValue(imageData, forKey: "gameImage")
+        
+        finishedMatch = match
+        print("set gamevc's finishedMatch")
     
         do {
             try managedContext.save()
@@ -193,6 +217,16 @@ class GameVC: UIViewController {
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
             abort()
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PostgameSegue" {
+            let destination = segue.destination as! PostGameVC
+            destination.match = finishedMatch
+            print("set postgameVC's finishedMatch")
+            //destination.navigationItem.setHidesBackButton(true, animated: true)
+            destination.changeBackButtonToX()
         }
     }
     
@@ -214,7 +248,7 @@ class GameVC: UIViewController {
             }
             //update board images
             let boardAsArray = board as! [Int]
-            DispatchQueue.main.async {
+            //DispatchQueue.main.async {
                 var emptySpace = false
                 for i in 0..<boardAsArray.count {
                     if (boardAsArray[i] == 1) {
@@ -243,7 +277,7 @@ class GameVC: UIViewController {
                 if (!emptySpace) {
                     self.gameFinished(didWin: 2)
                 }
-            }
+            //}
         })
         
         // Attaching playerTurn observer. It automatically disables/enables turn
@@ -266,22 +300,22 @@ class GameVC: UIViewController {
     ///   - bounds: The CGRect to denote the framing of the screenshot.
     func screenshotOfArea(view: UIView, bounds: CGRect? = nil) -> UIImage {
         let screenshotRect = CGRect(x: 20, y: 200, width: 374, height: 374)
-        return UIGraphicsImageRenderer(bounds: bounds ?? screenshotRect).image { _ in
-            view.drawHierarchy(in: view.bounds, afterScreenUpdates: false)
-        }
-    }
-}
+        
+        // Temporarily change view to light mode before screenshot.
+        // Allow turn to prevent button greying.
+        overrideUserInterfaceStyle = .light
+        self.navigationController?.navigationBar.barTintColor = .white
+        boardImageView.image = UIImage(named: "board-10pix-black-transparent")
+        allowTurn()
 
-/*
-/// Extension allows a screenshot to be taken of a UIView.
-extension UIView {
-    
-    /// Take a screenshot of the UIView using its bounds.
-    func screenshot() -> UIImage {
-        return UIGraphicsImageRenderer(bounds: self.bounds).image { _ in
-            drawHierarchy(in: self.bounds, afterScreenUpdates: false)
+        let result = UIGraphicsImageRenderer(bounds: bounds ?? screenshotRect).image { _ in
+            view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
         }
+        
+        // Change color mode back to settings-specified.
+        changeViewBasedOnColorMode()
+        disallowTurn()
+        
+        return result
     }
-    
 }
-*/

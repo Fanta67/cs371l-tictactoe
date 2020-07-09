@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KXF-TW-mFh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KXF-TW-mFh">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main Menu-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="cs371l_tictactoe" customModuleProvider="target" sceneMemberID="viewController">
@@ -36,7 +36,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Match History"/>
                                 <connections>
-                                    <segue destination="b38-AV-ZiS" kind="show" id="aP7-w6-gw9"/>
+                                    <segue destination="b38-AV-ZiS" kind="show" id="5Zn-Wg-vNQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TcR-LN-as7">
@@ -55,7 +55,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="27S-by-2zc"/>
+                    <navigationItem key="navigationItem" title="Main Menu" id="27S-by-2zc"/>
                     <connections>
                         <outlet property="titleImageView" destination="8Ej-ag-vap" id="E6A-iN-6sG"/>
                     </connections>
@@ -64,7 +64,7 @@
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="116.51785714285714"/>
         </scene>
-        <!--GameVC-->
+        <!--Game-->
         <scene sceneID="jhA-dk-mR3">
             <objects>
                 <viewController id="Tmv-RG-5TE" customClass="GameVC" customModule="cs371l_tictactoe" customModuleProvider="target" sceneMemberID="viewController">
@@ -147,17 +147,17 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your turn!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kk8-rC-HSl">
-                                <rect key="frame" x="20" y="609" width="374" height="199"/>
+                                <rect key="frame" x="20" y="620" width="374" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="UxZ-aT-Lj9"/>
                     </view>
-                    <navigationItem key="navigationItem" id="YmV-me-Qht"/>
+                    <navigationItem key="navigationItem" title="Game" id="YmV-me-Qht"/>
                     <connections>
                         <outlet property="boardImageView" destination="PL3-r0-zZW" id="lVG-rw-kFw"/>
                         <outlet property="boardView" destination="6Fc-Yr-NU9" id="ZfM-GL-GLP"/>
@@ -178,7 +178,7 @@
             </objects>
             <point key="canvasLocation" x="1838" y="117"/>
         </scene>
-        <!--Match HistVC-->
+        <!--Match History-->
         <scene sceneID="fuC-d3-gQQ">
             <objects>
                 <viewController id="b38-AV-ZiS" customClass="MatchHistVC" customModule="cs371l_tictactoe" customModuleProvider="target" sceneMemberID="viewController">
@@ -191,7 +191,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MatchCell" rowHeight="150" id="rMN-aU-abK" customClass="MatchHistoryCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MatchCell" rowHeight="150" id="rMN-aU-abK" customClass="MatchCell" customModule="cs371l_tictactoe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rMN-aU-abK" id="tPH-Oh-Lp7">
@@ -199,14 +199,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="title_cross" translatesAutoresizingMaskIntoConstraints="NO" id="bJf-d8-Xhw">
-                                                    <rect key="frame" x="-36" y="11" width="240" height="128"/>
+                                                    <rect key="frame" x="14" y="11" width="128" height="128"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="VICTORY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYb-6H-aUV">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="RESULT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYb-6H-aUV">
                                                     <rect key="frame" x="150" y="11" width="204" height="128"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                                    <color key="textColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" systemColor="systemGreenColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -222,16 +222,17 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="YG6-xH-YEA"/>
                     </view>
-                    <navigationItem key="navigationItem" id="w3L-xK-TLf"/>
+                    <navigationItem key="navigationItem" title="Match History" id="w3L-xK-TLf"/>
                     <connections>
                         <outlet property="tableView" destination="X6B-Ii-m7f" id="Y1x-11-2ji"/>
+                        <segue destination="gBM-8J-zgJ" kind="show" identifier="MatchHistToPostgameSegue" id="HXW-Yw-PRR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F6B-pa-31V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1837.68115942029" y="801.5625"/>
         </scene>
-        <!--SettingsVC-->
+        <!--Settings-->
         <scene sceneID="c11-px-7iU">
             <objects>
                 <viewController id="fnI-k6-bkZ" customClass="SettingsVC" customModule="cs371l_tictactoe" customModuleProvider="target" sceneMemberID="viewController">
@@ -271,7 +272,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="OfU-N0-r9d"/>
                     </view>
-                    <navigationItem key="navigationItem" id="xrc-I4-os9"/>
+                    <navigationItem key="navigationItem" title="Settings" id="xrc-I4-os9"/>
                     <connections>
                         <outlet property="darkMode" destination="Xdy-sZ-nHp" id="3b6-yc-bnF"/>
                         <outlet property="soundOn" destination="F0a-ct-pom" id="HiJ-09-pr9"/>
@@ -281,21 +282,39 @@
             </objects>
             <point key="canvasLocation" x="2587" y="802"/>
         </scene>
-        <!--Post GameVC-->
+        <!--Postgame-->
         <scene sceneID="ohi-iP-f7s">
             <objects>
                 <viewController id="gBM-8J-zgJ" customClass="PostGameVC" customModule="cs371l_tictactoe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o8v-s9-Hvk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g0v-uD-A7a">
+                                <rect key="frame" x="20" y="200" width="374" height="374"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Result" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cpn-DH-CQT">
+                                <rect key="frame" x="20" y="620" width="374" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="jA4-Ny-Hra"/>
                     </view>
-                    <navigationItem key="navigationItem" id="YPz-lP-HD7"/>
+                    <navigationItem key="navigationItem" title="Postgame" id="YPz-lP-HD7"/>
+                    <connections>
+                        <outlet property="imageView" destination="g0v-uD-A7a" id="xK1-Nc-ZGX"/>
+                        <outlet property="label" destination="Cpn-DH-CQT" id="Y3S-gw-DPf"/>
+                        <segue destination="KXF-TW-mFh" kind="presentation" identifier="PostgameToMainMenuSegue" modalPresentationStyle="fullScreen" id="5mk-FY-DwU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6y3-Wn-un7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2587" y="117"/>
+            <point key="canvasLocation" x="2586.9565217391305" y="116.51785714285714"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jCs-4W-mnh">
@@ -315,7 +334,7 @@
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="116.51785714285714"/>
         </scene>
-        <!--InviteVC-->
+        <!--Invite/Join-->
         <scene sceneID="n7k-FB-mUh">
             <objects>
                 <viewController id="jND-vz-5Ln" customClass="InviteVC" customModule="cs371l_tictactoe" customModuleProvider="target" sceneMemberID="viewController">
@@ -363,7 +382,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="TTj-rx-a02"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ASC-YK-Qwr"/>
+                    <navigationItem key="navigationItem" title="Invite/Join" id="ASC-YK-Qwr"/>
                     <connections>
                         <outlet property="inviteLabel" destination="Be5-tE-06S" id="wP3-gB-7Xq"/>
                         <outlet property="inviteTextField" destination="G6J-S4-yrR" id="SGy-qd-WRx"/>
@@ -376,12 +395,13 @@
             <point key="canvasLocation" x="3359" y="117"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="Fzq-RR-B4E"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="board-10pix-black-transparent" width="374" height="374"/>
         <image name="title-board-black-transparent" width="374" height="374"/>
         <image name="title_cross" width="1200" height="1200"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Ac9-V1-mmZ"/>
+        <segue reference="Fzq-RR-B4E"/>
+    </inferredMetricsTieBreakers>
 </document>
