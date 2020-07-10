@@ -90,7 +90,11 @@ class GameVC: UIViewController {
         button7.isEnabled = true
         button8.isEnabled = true
         button9.isEnabled = true
-        turnLabel.text = "Your turn!"
+        var symbol = "X"
+        if (playerID == "player2Name") {
+            symbol = "O"
+        }
+        turnLabel.text = "Your turn! (\(symbol))"
     }
     
     /// Disallow player from clicking buttons.
