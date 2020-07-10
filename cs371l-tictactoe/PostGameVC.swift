@@ -60,7 +60,6 @@ class PostGameVC: UIViewController, UIActivityItemSource {
         }
     }
 
-    
     @objc func segueToMainMenu() {
         performSegue(withIdentifier: "PostgameToMainMenuSegue", sender: nil)
     }

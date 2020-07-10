@@ -65,7 +65,7 @@ class ViewController: UIViewController {
 //            print(error)
 //        }
 //    }
-    
+//
 //    //clear out settings in core data on load for easier testing
 //    func DeleteMatchData(){
 //        let appDelegate = UIApplication.shared.delegate as! AppDelegate

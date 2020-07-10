@@ -21,6 +21,7 @@
 		FC53543524ADFB550058A7DE /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC53543424ADFB550058A7DE /* MatchCell.swift */; };
 		FC59572524A06FF9009EA08D /* MatchHistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59572424A06FF9009EA08D /* MatchHistVC.swift */; };
 		FC5F759724B61B01000DF466 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5F759624B61B01000DF466 /* AVFoundation.framework */; };
+		FC6C844024B7AFD1009E96F6 /* SoloGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6C843F24B7AFD0009E96F6 /* SoloGameVC.swift */; };
 		FC98E1D724A0707900083232 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC98E1D624A0707900083232 /* SettingsVC.swift */; };
 		FC98E1D924A0734A00083232 /* PostGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC98E1D824A0734900083232 /* PostGameVC.swift */; };
 /* End PBXBuildFile section */
@@ -44,6 +45,7 @@
 		FC53543424ADFB550058A7DE /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
 		FC59572424A06FF9009EA08D /* MatchHistVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHistVC.swift; sourceTree = "<group>"; };
 		FC5F759624B61B01000DF466 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		FC6C843F24B7AFD0009E96F6 /* SoloGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoloGameVC.swift; sourceTree = "<group>"; };
 		FC98E1D624A0707900083232 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		FC98E1D824A0734900083232 /* PostGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGameVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,12 +76,13 @@
 		81CC1CEB24A0678100524D35 /* cs371l-tictactoe */ = {
 			isa = PBXGroup;
 			children = (
+				81CC1CF224A0678100524D35 /* Main.storyboard */,
 				81CC1CEC24A0678100524D35 /* AppDelegate.swift */,
 				81CC1CEE24A0678100524D35 /* SceneDelegate.swift */,
-				81CC1CF224A0678100524D35 /* Main.storyboard */,
 				81CC1CF024A0678100524D35 /* ViewController.swift */,
 				8168297324AEABD5003E845F /* InviteVC.swift */,
 				FC225CB524B3262700F4C6CC /* GameVC.swift */,
+				FC6C843F24B7AFD0009E96F6 /* SoloGameVC.swift */,
 				FC53543424ADFB550058A7DE /* MatchCell.swift */,
 				FC59572424A06FF9009EA08D /* MatchHistVC.swift */,
 				FC98E1D824A0734900083232 /* PostGameVC.swift */,
@@ -236,6 +239,7 @@
 				FC53543524ADFB550058A7DE /* MatchCell.swift in Sources */,
 				FC59572524A06FF9009EA08D /* MatchHistVC.swift in Sources */,
 				FC98E1D724A0707900083232 /* SettingsVC.swift in Sources */,
+				FC6C844024B7AFD1009E96F6 /* SoloGameVC.swift in Sources */,
 				81CC1CEF24A0678100524D35 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

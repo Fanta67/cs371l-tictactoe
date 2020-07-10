@@ -36,6 +36,11 @@ class MatchCell: UITableViewCell {
     func setFieldsFromCoreData(match: NSManagedObject) {
         setBoardImage()
         whoWon.text = match.value(forKey: "whoWon") as? String
+        if (whoWon.text == "Defeat") {
+            whoWon.textColor = .red
+        } else if (whoWon.text == "Draw") {
+            whoWon.textColor = .yellow
+        }
         
         let gameStateArray = match.value(forKey: "gameState") as! [Int]
         let panelArray = [

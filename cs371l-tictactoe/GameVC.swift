@@ -32,7 +32,6 @@ class GameVC: UIViewController {
     var buttonArray: [UIButton] = []
     
     let winningCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
-    var boardState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     
     var clickPlayer: AVAudioPlayer!
     var endgamePlayer: AVAudioPlayer!
@@ -136,13 +135,16 @@ class GameVC: UIViewController {
             print("This shouldn't happen")
             abort()
         }
-        if (playerID == "player1Name") {
-            gameRef.child("board/\(whichIdx)").setValue(1)
-            gameRef.child("playerTurn").setValue(2)
-        } else {
-            gameRef.child("board/\(whichIdx)").setValue(2)
-            gameRef.child("playerTurn").setValue(1)
-        }
+        gameRef.child("board/\(whichIdx)").observeSingleEvent(of: .value, with: { (snapshot) in
+            let currVal = snapshot.value as! Int
+            if (self.playerID == "player1Name" && currVal == 0) {
+                self.gameRef.child("board/\(whichIdx)").setValue(1)
+                self.gameRef.child("playerTurn").setValue(2)
+            } else if (self.playerID == "player2Name" && currVal == 0){
+                self.gameRef.child("board/\(whichIdx)").setValue(2)
+                self.gameRef.child("playerTurn").setValue(1)
+            }
+        })
     }
     
     /// Saves match to core data and transition to postgame.
