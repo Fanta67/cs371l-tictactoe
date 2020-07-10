@@ -18,22 +18,16 @@
 
 **Features + who worked on it:**
 
-UI (Storyboard): Dylan - 50%, Billy - 50%
-
-Soloplayer Game Logic: Dylan - 100%
-
-Invite Screen: Billy - 80%, Dylan - 20%
-
-Multiplayer Game Logic: Dylan - 80%, Billy - 20%
-
-Match History: Billy - 100%
-
-Postgame: Billy - 100%
-
-Settings: Dylan - 100%
-
-Core Data storage and retrieval: Dylan - 50%, Billy - 50%
-
-Firebase: Dylan - 50%, Billy - 50%
-
-Audio: Dylan - 100%
+| Feature                         | Description                                | Who/Percentage Worked On  |
+|---------------------------------|--------------------------------------------|---------------------------|
+| UI (Storyboard)                 | Storyboard layout                          | Dylan(50%), Billy (50%)   |
+| Soloplayer Game Logic           | Play solo gameplay                         | Dylan(100%)               |
+| Invite Screen                   | Invite code generation                     | Billy(80%), Dylan(20%)    |
+| Multiplayer Game Logic          | Play with friend gameplay                  | Dylan(80%), Billy(20%)    |
+| Match History                   | Pulling up past matches                    | Billy(100%)               |
+| Postgame/Sharing                | Present board state and option to share    | Billy(100%)               |
+| Settings                        | Settings screen                            | Dylan(100%)               |
+| Core Data storage and retrieval | Storage of settings and matches            | Dylan(50%), Billy (50%)   |
+| Firebase                        | Database storage of games                  | Dylan(50%), Billy (50%)   |
+| Audio                           | Playing sound on button click and win/loss | Dylan(100%)               |
+| Asset Images                    | Creation of asset images                   | Billy(100%)               |
