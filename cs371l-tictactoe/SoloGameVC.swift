@@ -48,6 +48,7 @@ class SoloGameVC: UIViewController {
         } catch {
             print("Failed to create AVAudioPlayer")
         }
+        turnLabel.text = "X's turn!"
         turn = 1
     }
     
@@ -95,6 +96,7 @@ class SoloGameVC: UIViewController {
             self.boardState[whichIdx] = 1
             self.buttonArray[whichIdx].setImage(UIImage(named: "x.png"), for: .normal)
             self.turn = 2
+            turnLabel.text = "O's turn!"
             //play button click whenever board changes
             if (settings[1].value(forKeyPath: "isOn") as! Bool) {
                 self.clickPlayer.prepareToPlay()
@@ -104,6 +106,7 @@ class SoloGameVC: UIViewController {
             self.boardState[whichIdx] = 2
             self.buttonArray[whichIdx].setImage(UIImage(named: "o.png"), for: .normal)
             self.turn = 1
+            turnLabel.text = "X's turn!"
             //play button click whenever board changes
             if (settings[1].value(forKeyPath: "isOn") as! Bool) {
                 self.clickPlayer.prepareToPlay()
