@@ -167,10 +167,11 @@ class GameVC: UIViewController {
                 self.save(whoWon: "Victory", gameState: gameState)
                 let sound = NSDataAsset(name: "victory")!
                 do {
-                    self.endgamePlayer = try AVAudioPlayer(data: sound.data, fileTypeHint: "mp3")
-                    self.endgamePlayer.prepareToPlay()
-                    self.endgamePlayer.play()
-                    
+                    if (settings[1].value(forKeyPath: "isOn") as! Bool) {
+                        self.endgamePlayer = try AVAudioPlayer(data: sound.data, fileTypeHint: "mp3")
+                        self.endgamePlayer.prepareToPlay()
+                        self.endgamePlayer.play()
+                    }
                 } catch {
                     print("Failed to create AVAudioPlayer")
                 }
@@ -178,9 +179,11 @@ class GameVC: UIViewController {
                 self.save(whoWon: "Defeat", gameState: gameState)
                 let sound = NSDataAsset(name: "defeat")!
                 do {
-                    self.endgamePlayer = try AVAudioPlayer(data: sound.data, fileTypeHint: "mp3")
-                    self.endgamePlayer.prepareToPlay()
-                    self.endgamePlayer.play()
+                    if (settings[1].value(forKeyPath: "isOn") as! Bool) {
+                        self.endgamePlayer = try AVAudioPlayer(data: sound.data, fileTypeHint: "mp3")
+                        self.endgamePlayer.prepareToPlay()
+                        self.endgamePlayer.play()
+                    }
                 } catch {
                     print("Failed to create AVAudioPlayer")
                 }
