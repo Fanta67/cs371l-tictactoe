@@ -1,10 +1,10 @@
-Team members: Dylan Kan (dk9362), Billy Vo (bv5433)
+**Team members:** Dylan Kan (dk9362), Billy Vo (bv5433)
 
-Name of project: Tic Tac Toe
+**Name of project:** Tic Tac Toe
 
-Dependencies:
+**Dependencies:**
 
-Special Instructions:
+**Special Instructions:**
 
 • Open using the xcworkspace file instead of the xcodeproj file
 
@@ -16,7 +16,7 @@ Special Instructions:
 
 • There are functions commented out to clear core data in ViewController.swift in case you want to clear out your match history or reset to default settings on startup
 
-Features + who worked on it:
+**Features + who worked on it:**
 
 UI (Storyboard): Dylan - 50%, Billy - 50%
 
