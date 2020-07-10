@@ -1,11 +1,11 @@
 //
-//  MatchHistVC.swift
+//  Filename: MatchHistVC.swift
 //  cs371l-tictactoe
 //  EID: bv5433, dk9362
 //  Course: CS371L
 //
-//  Created by Dylan Kan on 6/21/20.
-//  Copyright © 2020 billyvo. All rights reserved.
+//  Created by Billy Vo and Dylan Kan on 6/22/20.
+//  Copyright © 2020 billyvo and dylan.kan67. All rights reserved.
 //
 
 import UIKit
@@ -37,7 +37,7 @@ class MatchHistVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
               return
         }
         
-        //fetch matches from core data
+        // fetch matches from Core Data.
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Match")
         
@@ -50,15 +50,17 @@ class MatchHistVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         }
     }
     
-    //set cell height so we can display everything
+    // Set cell height so we can display everything.
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
        return 150
     }
     
+    // Tell tableView how many cells to allocate.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return matchTable.count
     }
     
+    // For each cell, set their match-representing board.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MatchCell", for: indexPath as IndexPath) as! MatchCell
         let row = indexPath.row
@@ -68,6 +70,7 @@ class MatchHistVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         return cell
     }
     
+    // Selecting a row segues into PostGameVC and sends match.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "MatchHistToPostgameSegue", sender: nil)
     }

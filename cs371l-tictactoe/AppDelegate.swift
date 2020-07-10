@@ -1,10 +1,11 @@
 //
 //  Filename: AppDelegate.swift
+//  cs371l-tictactoe
 //  EID: bv5433, dk9362
 //  Course: CS371L
 //
-//  Created by Billy Vo on 6/21/20.
-//  Copyright © 2020 billyvo. All rights reserved.
+//  Created by Billy Vo and Dylan Kan on 6/22/20.
+//  Copyright © 2020 billyvo and dylan.kan67. All rights reserved.
 //
 
 import UIKit
@@ -14,10 +15,7 @@ import Firebase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         FirebaseApp.configure()
         return true
     }

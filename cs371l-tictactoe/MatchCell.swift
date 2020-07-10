@@ -1,11 +1,11 @@
 //
-//  MatchCell.swift
+//  Filename: MatchCell.swift
 //  cs371l-tictactoe
 //  EID: bv5433, dk9362
 //  Course: CS371L
 //
-//  Created by Dylan Kan on 7/2/20.
-//  Copyright © 2020 billyvo. All rights reserved.
+//  Created by Billy Vo and Dylan Kan on 6/22/20.
+//  Copyright © 2020 billyvo and dylan.kan67. All rights reserved.
 //
 
 import UIKit
@@ -25,14 +25,16 @@ class MatchCell: UITableViewCell {
     @IBOutlet weak var boardImageView: UIImageView!
     @IBOutlet weak var whoWon: UILabel!
     
+    // Sets board image (color) based on selected color scheme.
     func setBoardImage() {
         if(settings[0].value(forKeyPath: "isOn") as! Bool) {
-            boardImageView.image = UIImage(named: "board-10pix-white-opaque")
+            boardImageView.image = UIImage(named: "board-10pix-white-transparent")
         } else {
-            boardImageView.image = UIImage(named: "board-10pix-black-opaque")
+            boardImageView.image = UIImage(named: "board-10pix-black-transparent")
         }
     }
     
+    // Sets other fields of the board's representation based on match from Core Data.
     func setFieldsFromCoreData(match: NSManagedObject) {
         setBoardImage()
         whoWon.text = match.value(forKey: "whoWon") as? String

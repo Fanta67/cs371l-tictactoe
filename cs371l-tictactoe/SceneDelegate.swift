@@ -1,10 +1,11 @@
 //
 //  Filename: SceneDelegate.swift
+//  cs371l-tictactoe
 //  EID: bv5433, dk9362
 //  Course: CS371L
 //
-//  Created by Billy Vo on 6/21/20.
-//  Copyright © 2020 billyvo. All rights reserved.
+//  Created by Billy Vo and Dylan Kan on 6/22/20.
+//  Copyright © 2020 billyvo and dylan.kan67. All rights reserved.
 //
 
 import UIKit
@@ -12,7 +13,6 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.

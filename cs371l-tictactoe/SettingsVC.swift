@@ -1,11 +1,11 @@
 //
-//  SettingsVC.swift
+//  Filename: SettingsVC.swift
 //  cs371l-tictactoe
 //  EID: bv5433, dk9362
 //  Course: CS371L
 //
-//  Created by Dylan Kan on 6/21/20.
-//  Copyright © 2020 billyvo. All rights reserved.
+//  Created by Billy Vo and Dylan Kan on 6/22/20.
+//  Copyright © 2020 billyvo and dylan.kan67. All rights reserved.
 //
 
 import UIKit
@@ -18,7 +18,7 @@ class SettingsVC: UIViewController {
     @IBOutlet weak var soundOn: UISwitch!
     var clickPlayer: AVAudioPlayer!
 
-    //set up initial states of switches and create audio player
+    // Set up initial states of switches and create audio player.
     override func viewDidLoad() {
         super.viewDidLoad()
         let dark = settings[0]
@@ -34,7 +34,7 @@ class SettingsVC: UIViewController {
         }
     }
     
-    //open with dark mode or light mode
+    // Open with dark mode or light mode.
     override func viewWillAppear(_ animated: Bool) {
         if(settings[0].value(forKeyPath: "isOn") as! Bool) {
             overrideUserInterfaceStyle = .dark
@@ -45,7 +45,7 @@ class SettingsVC: UIViewController {
         }
     }
     
-    //play click sound and save to core data
+    // Play click sound and save to Core Data.
     @IBAction func toggleDarkMode(_ sender: Any) {
         if(settings[1].value(forKeyPath: "isOn") as! Bool) {
             clickPlayer.prepareToPlay()
@@ -61,7 +61,7 @@ class SettingsVC: UIViewController {
         }
     }
     
-    //play click sound if we toggle on
+    // Play click sound if we toggle on.
     @IBAction func toggleSound(_ sender: Any) {
         save(which: 1, value: soundOn.isOn)
         if(settings[1].value(forKeyPath: "isOn") as! Bool) {
@@ -70,7 +70,7 @@ class SettingsVC: UIViewController {
         }
     }
     
-    //save setting to core data
+    // Save setting to Core Data.
     func save(which: Int, value: Bool) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return

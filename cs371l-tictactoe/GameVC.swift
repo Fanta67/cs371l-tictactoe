@@ -1,11 +1,11 @@
 //
-//  GameVC.swift
+//  Filename: GameVC.swift
 //  cs371l-tictactoe
 //  EID: bv5433, dk9362
 //  Course: CS371L
 //
-//  Created by Dylan Kan on 6/21/20.
-//  Copyright © 2020 billyvo. All rights reserved.
+//  Created by Billy Vo and Dylan Kan on 6/22/20.
+//  Copyright © 2020 billyvo and dylan.kan67. All rights reserved.
 //
 
 import UIKit
@@ -45,7 +45,7 @@ class GameVC: UIViewController {
     // A reference to the current game.
     var gameRef: DatabaseReference = Database.database().reference()
         
-    //find current game in the database and attach observers
+    // Find current game in the database and attach observers.
     override func viewDidLoad() {
         super.viewDidLoad()
         title = inviteCode
@@ -79,7 +79,7 @@ class GameVC: UIViewController {
         gameRef.child("playerTurn").removeObserver(withHandle: turnObserverHandle)
     }
     
-    /// Allow player to click buttons.
+    // Allow player to click buttons.
     func allowTurn() {
         button1.isEnabled = true
         button2.isEnabled = true
@@ -97,7 +97,7 @@ class GameVC: UIViewController {
         turnLabel.text = "Your turn! (\(symbol))"
     }
     
-    /// Disallow player from clicking buttons.
+    // Disallow player from clicking buttons.
     func disallowTurn() {
         button1.isEnabled = false
         button2.isEnabled = false
@@ -111,10 +111,10 @@ class GameVC: UIViewController {
         turnLabel.text = "Opponent's turn!"
     }
     
-    /// Update board in database and change turn.
+    // Update board in database and change turn.
     @IBAction func buttonPressed(_ sender: Any) {
         let button = sender as? UIButton
-        //figure out which button was rpessed
+        // Figure out which button was pressed.
         var whichIdx = -1
         switch button {
         case button1:
@@ -139,6 +139,8 @@ class GameVC: UIViewController {
             print("This shouldn't happen")
             abort()
         }
+        
+        // Update database values based on button press index.
         gameRef.child("board/\(whichIdx)").observeSingleEvent(of: .value, with: { (snapshot) in
             let currVal = snapshot.value as! Int
             if (self.playerID == "player1Name" && currVal == 0) {
@@ -151,7 +153,7 @@ class GameVC: UIViewController {
         })
     }
     
-    /// Saves match to core data and transition to postgame.
+    // Saves match to Core Data and segue to postgame.
     func gameFinished(didWin: Int) {
         
         if currentClientGame == inviteCode {
@@ -198,7 +200,7 @@ class GameVC: UIViewController {
         })
     }
     
-    //save match to core data
+    // Save match to Core Data.
     func save(whoWon: String, gameState: NSArray) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -209,7 +211,6 @@ class GameVC: UIViewController {
         let match = NSManagedObject(entity: entity, insertInto: managedContext)
         match.setValue(gameState, forKey: "gameState")
         match.setValue(whoWon, forKey: "whoWon")
-            
         self.finishedMatch = match
         
         do {
@@ -229,56 +230,54 @@ class GameVC: UIViewController {
         }
     }
     
-    /// Attaches observers to database's current board and playerTurn. Observers execute code specified
-    /// by the with: parameter every time data being observed is changed.
+    // Attaches observers to database's current board and playerTurn.
+    // Observers execute code specified by with: every time the observed data is changed.
     func attachObserversToBoard() {
         
         // Attaching board observer.
         boardObserverHandle = gameRef.child("board").observe(DataEventType.value, with: { (snapshot) in
-            // Casts snapshot as an array
+            // Casts snapshot as an array.
             guard let board = snapshot.value as? NSMutableArray else {
                 print("Error: Casting Board As Array")
                 return
             }
-            //play button click whenever board changes
+            // Play button click whenever board changes.
             if (settings[1].value(forKeyPath: "isOn") as! Bool) {
                 self.clickPlayer.prepareToPlay()
                 self.clickPlayer.play()
             }
-            //update board images
+            // Update board images.
             let boardAsArray = board as! [Int]
-            //DispatchQueue.main.async {
-                var emptySpace = false
-                for i in 0..<boardAsArray.count {
-                    if (boardAsArray[i] == 1) {
-                        self.buttonArray[i].setImage(UIImage(named: "x.png"), for: .normal)
-                    } else if (boardAsArray[i] == 2) {
-                        self.buttonArray[i].setImage(UIImage(named: "o.png"), for: .normal)
+            var emptySpace = false
+            for i in 0..<boardAsArray.count {
+                if (boardAsArray[i] == 1) {
+                    self.buttonArray[i].setImage(UIImage(named: "x.png"), for: .normal)
+                } else if (boardAsArray[i] == 2) {
+                    self.buttonArray[i].setImage(UIImage(named: "o.png"), for: .normal)
+                } else {
+                    emptySpace = true
+                    self.buttonArray[i].setImage(nil, for: .normal)
+                }
+            }
+            
+            // Check for win conditions.
+            for combination in self.winningCombinations {
+                // If we find 3 of the same symbol in a row.
+                if (boardAsArray[combination[0]] != 0 && boardAsArray[combination[0]] == boardAsArray[combination[1]] && boardAsArray[combination[1]] == boardAsArray[combination[2]]) {
+                    if (boardAsArray[combination[0]] == 1 && self.playerID == "player1Name") || (boardAsArray[combination[0]] == 2 && self.playerID == "player2Name") {
+                        self.gameFinished(didWin: 1)
+                        return
                     } else {
-                        emptySpace = true
-                        self.buttonArray[i].setImage(nil, for: .normal)
+                        self.gameFinished(didWin: 0)
+                        return
                     }
                 }
-                
-                //check for win
-                for combination in self.winningCombinations {
-                    //if we find 3 of the same symbol in a row
-                    if (boardAsArray[combination[0]] != 0 && boardAsArray[combination[0]] == boardAsArray[combination[1]] && boardAsArray[combination[1]] == boardAsArray[combination[2]]) {
-                        if (boardAsArray[combination[0]] == 1 && self.playerID == "player1Name") || (boardAsArray[combination[0]] == 2 && self.playerID == "player2Name") {
-                            self.gameFinished(didWin: 1)
-                            return
-                        } else {
-                            self.gameFinished(didWin: 0)
-                            return
-                        }
-                    }
-                }
-                
-                //board is filled and no win, game is a draw
-                if (!emptySpace) {
-                    self.gameFinished(didWin: 2)
-                }
-            //}
+            }
+            
+            // Board is filled and no win, game is a draw.
+            if (!emptySpace) {
+                self.gameFinished(didWin: 2)
+            }
         })
         
         // Attaching playerTurn observer. It automatically disables/enables turn

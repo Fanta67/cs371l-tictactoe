@@ -1,11 +1,11 @@
 //
-//  SoloGameVC.swift
+//  Filename: SoloGameVC.swift
 //  cs371l-tictactoe
 //  EID: bv5433, dk9362
 //  Course: CS371L
 //
-//  Created by Dylan Kan on 7/9/20.
-//  Copyright © 2020 billyvo. All rights reserved.
+//  Created by Billy Vo and Dylan Kan on 6/22/20.
+//  Copyright © 2020 billyvo and dylan.kan67. All rights reserved.
 //
 
 import UIKit
@@ -64,10 +64,10 @@ class SoloGameVC: UIViewController {
         }
     }
     
-    /// Update board in database and change turn.
+    // Update board in database and change turn.
     @IBAction func buttonPressed(_ sender: Any) {
         let button = sender as? UIButton
-        //figure out which button was rpessed
+        // Figure out which button was pressed.
         var whichIdx = -1
         switch button {
         case button1:
@@ -97,7 +97,7 @@ class SoloGameVC: UIViewController {
             self.buttonArray[whichIdx].setImage(UIImage(named: "x.png"), for: .normal)
             self.turn = 2
             turnLabel.text = "O's turn!"
-            //play button click whenever board changes
+            // Play button click whenever board changes.
             if (settings[1].value(forKeyPath: "isOn") as! Bool) {
                 self.clickPlayer.prepareToPlay()
                 self.clickPlayer.play()
@@ -107,7 +107,7 @@ class SoloGameVC: UIViewController {
             self.buttonArray[whichIdx].setImage(UIImage(named: "o.png"), for: .normal)
             self.turn = 1
             turnLabel.text = "X's turn!"
-            //play button click whenever board changes
+            // Play button click whenever board changes.
             if (settings[1].value(forKeyPath: "isOn") as! Bool) {
                 self.clickPlayer.prepareToPlay()
                 self.clickPlayer.play()
@@ -123,9 +123,9 @@ class SoloGameVC: UIViewController {
                 emptySpace = true
             }
         }
-        //check for win
+        // Check for win conditions.
         for combination in self.winningCombinations {
-            //if we find 3 of the same symbol in a row
+            // If we find 3 of the same symbol in a row.
             if (boardState[combination[0]] != 0 && boardState[combination[0]] == boardState[combination[1]] && boardState[combination[1]] == boardState[combination[2]]) {
                 if (boardState[combination[0]] == 1) {
                     gameFinished(winner: "X Won!")
@@ -137,13 +137,13 @@ class SoloGameVC: UIViewController {
             }
         }
             
-        //board is filled and no win, game is a draw
+        // Board is filled and no win, game is a draw.
         if (!emptySpace) {
             gameFinished(winner: "Draw")
         }
     }
         
-    /// Saves match to core data and transition to postgame.
+    // Saves match to Core Data and segues to postgame.
     func gameFinished(winner: String) {
         let gameState = boardState as NSArray
         self.save(whoWon: winner, gameState: gameState)
@@ -161,7 +161,7 @@ class SoloGameVC: UIViewController {
         self.performSegue(withIdentifier: "SoloPostgameSegue", sender: nil)
     }
     
-    //save match to core data
+    // Save match to Core Data.
     func save(whoWon: String, gameState: NSArray) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -172,7 +172,6 @@ class SoloGameVC: UIViewController {
         let match = NSManagedObject(entity: entity, insertInto: managedContext)
         match.setValue(gameState, forKey: "gameState")
         match.setValue(whoWon, forKey: "whoWon")
-            
         self.finishedMatch = match
         
         do {

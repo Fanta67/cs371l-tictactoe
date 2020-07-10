@@ -1,16 +1,17 @@
 //
 //  Filename: ViewController.swift
+//  cs371l-tictactoe
 //  EID: bv5433, dk9362
 //  Course: CS371L
 //
-//  Created by Billy Vo on 6/21/20.
-//  Copyright © 2020 billyvo. All rights reserved.
+//  Created by Billy Vo and Dylan Kan on 6/22/20.
+//  Copyright © 2020 billyvo and dylan.kan67. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
-//store darkMode and soundOn
+// Store darkMode and soundOn.
 public var settings:[NSManagedObject] = []
 
 class ViewController: UIViewController {
@@ -23,7 +24,7 @@ class ViewController: UIViewController {
               return
         }
         
-        //fetch settings from core data
+        // Fetch settings from core data.
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "DarkMode")
         let fetchRequest2 = NSFetchRequest<NSManagedObject>(entityName: "Sound")
@@ -42,17 +43,18 @@ class ViewController: UIViewController {
             abort()
         }
         
+//        // Methods for deleting Core Data data.
 //        DeleteAllData()
 //        DeleteMatchData()
         
-        //first time opening app and nothing in core data
+        // First time opening app and nothing in core data.
         if (settings.count == 0) {
             saveDefaults()
         }
     }
 
-//    //clear out settings in core data on load for easier testing
-//    func DeleteAllData(){
+//    // Clears out settings data in Core Data on load for easier testing.
+//    func DeleteAllData() {
 //        let appDelegate = UIApplication.shared.delegate as! AppDelegate
 //        let managedContext = appDelegate.persistentContainer.viewContext
 //        let DelAllReqVar = NSBatchDeleteRequest(fetchRequest: NSFetchRequest<NSFetchRequestResult>(entityName: "DarkMode"))
@@ -66,7 +68,7 @@ class ViewController: UIViewController {
 //        }
 //    }
 //
-//    //clear out settings in core data on load for easier testing
+//    // Clears out match data in Core Data on load for easier testing.
 //    func DeleteMatchData(){
 //        let appDelegate = UIApplication.shared.delegate as! AppDelegate
 //        let managedContext = appDelegate.persistentContainer.viewContext
@@ -91,7 +93,7 @@ class ViewController: UIViewController {
         }
     }
     
-    //save default settings value to core data on first launch
+    // Save default settings value to Core Data on first launch.
     func saveDefaults() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return

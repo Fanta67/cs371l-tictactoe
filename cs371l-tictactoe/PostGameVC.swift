@@ -1,11 +1,11 @@
 //
-//  PostGameVC.swift
+//  Filename: PostGameVC.swift
 //  cs371l-tictactoe
 //  EID: bv5433, dk9362
 //  Course: CS371L
 //
-//  Created by Dylan Kan on 6/22/20.
-//  Copyright © 2020 billyvo. All rights reserved.
+//  Created by Billy Vo and Dylan Kan on 6/22/20.
+//  Copyright © 2020 billyvo and dylan.kan67. All rights reserved.
 //
 
 import UIKit
@@ -42,6 +42,7 @@ class PostGameVC: UIViewController, UIActivityItemSource {
         changeViewBasedOnColorMode()
     }
     
+    // Set images of match-representing board based on match from Core Data.
     func setImagesFromCoreData() {
         let gameStateArray = match.value(forKey: "gameState") as! [Int]
         let panelArray = [
@@ -60,17 +61,18 @@ class PostGameVC: UIViewController, UIActivityItemSource {
         }
     }
 
+    // Segues to Main Menu (ViewController), to be used by the X button in Navigation Bar.
     @objc func segueToMainMenu() {
         performSegue(withIdentifier: "PostgameToMainMenuSegue", sender: nil)
     }
     
-    /// Changes the Navigation Bar's back button to be an X. Called when segued from GameVC.
+    // Changes the Navigation Bar's back button to be an X. Called when segued from GameVC.
     func changeBackButtonToX() {
         let leftBarButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(segueToMainMenu))
         navigationItem.setLeftBarButton(leftBarButton, animated: true)
     }
 
-    /// Creates an UIActiviyViewController to share an image of the match's board.
+    // Creates an UIActiviyViewController to share an image of the match's board.
     @IBAction func shareButtonPressed(_ sender: Any) {
         screenshot = screenshotOfArea(view: boardView, bounds: boardView.bounds)
         let activityViewController = UIActivityViewController(activityItems: [screenshot!, self], applicationActivities: nil)
@@ -78,7 +80,7 @@ class PostGameVC: UIViewController, UIActivityItemSource {
         present(activityViewController, animated: true, completion: nil)
     }
     
-    /// Displays the board image as the thumbnail when sharing.
+    // Displays the board image as the thumbnail and provides description when sharing.
     func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
         let image = screenshot!
         let imageProvider = NSItemProvider(object: image)
@@ -98,16 +100,17 @@ class PostGameVC: UIViewController, UIActivityItemSource {
         return metadata
     }
     
-    // Functions to conform to UIActivityItemSource
+    // Function to conform to UIActivityItemSource.
     func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
         return ""
     }
     
+    // Function to conform to UIActivityItemSource.
     func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
         return nil
     }
     
-    /// Changes view to light/dark mode based on setting.
+    // Changes view to light/dark mode based on setting.
     func changeViewBasedOnColorMode() {
         if(settings[0].value(forKeyPath: "isOn") as! Bool) {
             overrideUserInterfaceStyle = .dark
