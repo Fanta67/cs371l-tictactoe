@@ -16,6 +16,7 @@
 		81CC1CF724A0678100524D35 /* cs371l_tictactoe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81CC1CF524A0678100524D35 /* cs371l_tictactoe.xcdatamodeld */; };
 		81CC1CF924A0678200524D35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81CC1CF824A0678200524D35 /* Assets.xcassets */; };
 		81CC1CFC24A0678200524D35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81CC1CFA24A0678200524D35 /* LaunchScreen.storyboard */; };
+		B083954FE47671502B26061F /* Pods_cs371l_tictactoe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B99226DF2E915E0DB24A423A /* Pods_cs371l_tictactoe.framework */; };
 		FC225CB624B3262700F4C6CC /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC225CB524B3262700F4C6CC /* GameVC.swift */; };
 		FC53543524ADFB550058A7DE /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC53543424ADFB550058A7DE /* MatchCell.swift */; };
 		FC59572524A06FF9009EA08D /* MatchHistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59572424A06FF9009EA08D /* MatchHistVC.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B5CCE99DACF3CAF9BD81DB7 /* Pods-cs371l-tictactoe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cs371l-tictactoe.release.xcconfig"; path = "Target Support Files/Pods-cs371l-tictactoe/Pods-cs371l-tictactoe.release.xcconfig"; sourceTree = "<group>"; };
 		811138BF24ADCD3400B71D75 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8168297024AEA668003E845F /* cs371l-tictactoe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "cs371l-tictactoe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8168297324AEABD5003E845F /* InviteVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteVC.swift; sourceTree = "<group>"; };
@@ -37,6 +39,8 @@
 		81CC1CF824A0678200524D35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		81CC1CFB24A0678200524D35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		81CC1CFD24A0678200524D35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A830DD5517F2F9E5D31C604C /* Pods-cs371l-tictactoe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cs371l-tictactoe.debug.xcconfig"; path = "Target Support Files/Pods-cs371l-tictactoe/Pods-cs371l-tictactoe.debug.xcconfig"; sourceTree = "<group>"; };
+		B99226DF2E915E0DB24A423A /* Pods_cs371l_tictactoe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cs371l_tictactoe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC225CB524B3262700F4C6CC /* GameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
 		FC53543424ADFB550058A7DE /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
 		FC59572424A06FF9009EA08D /* MatchHistVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHistVC.swift; sourceTree = "<group>"; };
@@ -52,6 +56,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC5F759724B61B01000DF466 /* AVFoundation.framework in Frameworks */,
+				B083954FE47671502B26061F /* Pods_cs371l_tictactoe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				FC5F759624B61B01000DF466 /* AVFoundation.framework */,
+				B99226DF2E915E0DB24A423A /* Pods_cs371l_tictactoe.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -102,6 +108,8 @@
 		C42702BEFCE68EAA8BDEFE2B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				A830DD5517F2F9E5D31C604C /* Pods-cs371l-tictactoe.debug.xcconfig */,
+				4B5CCE99DACF3CAF9BD81DB7 /* Pods-cs371l-tictactoe.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -113,9 +121,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 81CC1D0024A0678200524D35 /* Build configuration list for PBXNativeTarget "cs371l-tictactoe" */;
 			buildPhases = (
+				125D3158F3C0200C4AB100B1 /* [CP] Check Pods Manifest.lock */,
 				81CC1CE524A0678100524D35 /* Sources */,
 				81CC1CE624A0678100524D35 /* Frameworks */,
 				81CC1CE724A0678100524D35 /* Resources */,
+				7DA7A4D56EE575161567CDEA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -172,6 +182,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		125D3158F3C0200C4AB100B1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-cs371l-tictactoe-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7DA7A4D56EE575161567CDEA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-cs371l-tictactoe/Pods-cs371l-tictactoe-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-cs371l-tictactoe/Pods-cs371l-tictactoe-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-cs371l-tictactoe/Pods-cs371l-tictactoe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		81CC1CE524A0678100524D35 /* Sources */ = {
@@ -330,6 +382,7 @@
 		};
 		81CC1D0124A0678200524D35 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A830DD5517F2F9E5D31C604C /* Pods-cs371l-tictactoe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -348,6 +401,7 @@
 		};
 		81CC1D0224A0678200524D35 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B5CCE99DACF3CAF9BD81DB7 /* Pods-cs371l-tictactoe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
